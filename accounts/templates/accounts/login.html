@@ -1,0 +1,13 @@
+<h2>로그인</h2>
+<form method="POST">
+    {% csrf_token %}
+    Username<br>
+    <input name="username" type="text" value=""><br>
+    Password<br>
+    <input name="password" type="password" value="">
+    <br>
+    <input class="btn" type="submit" value='Login'>
+</form>
+<br>
+<a href = "{% url 'c_signup' %}">예매자 회원가입</a>
+<a href = "{% url 'p_signup' %}">공연자 회원가입</a>
