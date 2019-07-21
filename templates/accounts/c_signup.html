@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+{% load staticfiles %}
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'css/accounts_style.css' %}">
+    </head>
+    <body>
+        <h1>테스트텍스트</h1>
+        <h2 class = 'register'>예매자 회원가입</h2>
+    <form method="POST">
+        <input type="hidden" name="csrfmiddlewaretoken" value="LQTQAiTqQB1xeSAcB0KJneDzZvQXiCb2OzTeHSSe5nMJvuhYKvLsZ9q24OvjDzD0">
+        <p>
+            <label for="id_c_name">C name:</label> 
+            <input type="text" name="c_name" required="" id="id_c_name">
+        </p>
+        <p>
+            <label for="id_username">사용자 이름:</label> 
+            <input type="text" name="username" maxlength="150" autofocus="" required="" id="id_username"> 
+            <span class="helptext">150자 이하 문자, 숫자 그리고 @/./+/-/_만 가능합니다.</span>
+        </p>
+        <p>
+            <label for="id_password1">비밀번호:</label>
+            <input type="password" name="password1" required="" id="id_password1">
+            <span class="helptext"></span>
+        </p>
+
+        <p></p>
+        <p>
+            <label for="id_password2">비밀번호 확인:</label> 
+            <input type="password" name="password2" required="" id="id_password2"> 
+            <span class="helptext">확인을 위해 이전과 동일한 비밀번호를 입력하세요. </span>
+        </p>
+        <p>
+            <label for="id_c_phone">C phone:</label>
+            <input type="text" name="c_phone" required="" id="id_c_phone">
+        </p>
+        <p>
+            <label for="id_c_email">C email:</label>
+            <input type="email" name="c_email" required="" id="id_c_email">
+        </p>
+        <button type="submit">예매자 회원가입</button>
+    </form>
+    </body>
+</html>
