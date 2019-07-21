@@ -1,0 +1,54 @@
+/* font setting */
+/* if you want to change font to '이숲체', add the class 'esup' to the element you want */
+@font-face { font-family: 'LeeHyunJi'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/LeeHyunJi.woff') format('woff'); font-weight: normal; font-style: normal; }
+.esup{
+    font-family: 'LeeHyunJi';
+}
+
+
+/* applying font-family to the placeholder */
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    font-family: 'LeeHyunJi';
+  }
+  
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    font-family: 'LeeHyunJi';
+  }
+  
+  ::-ms-input-placeholder { /* Microsoft Edge */
+    font-family: 'LeeHyunJi';
+  }
+
+
+/* c_signup.html */
+.upper_blank{
+    height: 50px;
+}
+
+.required{
+    color: red;
+    font-size: 20px;
+}
+
+.btn_register{
+    background-color:white;
+    width: 250px;
+    opacity: 0.7;
+}
+
+.register_button{
+    border: none;
+    background: none;
+    padding: 0;
+    margin-top: 50px;
+    margin-bottom: 100px;
+}
+
+.btn_container{
+    text-align: center;
+}
+
+h1{
+    text-align: center;
+    margin-bottom: 50px;
+}

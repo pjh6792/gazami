@@ -1,11 +1,67 @@
-<html><head></head><body><h2>공연자 회원가입</h2>
+<!DOCTYPE html>
+
+{% load staticfiles %}
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'css/accounts_style.css' %}">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class='container'>
+        <div class='upper_blank'></div>
+        <h1 class = 'register esup'>공연자 회원가입</h1>
     <form method="POST">
         <input type="hidden" name="csrfmiddlewaretoken" value="MDgQtJEmy3nlL80LDg5PdoGjmH8nrcUUPmgeAjDaNP8x2KHxML6yPjtMr0NJM9mS">
-        <p><label for="id_p_name">P name:</label> <input type="text" name="p_name" required="" id="id_p_name"></p>
-    <p><label for="id_username">사용자 이름:</label> <input type="text" name="username" maxlength="150" autofocus="" required="" id="id_username"> <span class="helptext">150자 이하 문자, 숫자 그리고 @/./+/-/_만 가능합니다.</span></p>
-    <p><label for="id_password1">비밀번호:</label> <input type="password" name="password1" required="" id="id_password1"> <span class="helptext"></span></p><ul><li>다른 개인정보와 비슷한 비밀번호는 사용할 수 없습니다.</li><li>비밀번호는 최소 8자 이상이어야 합니다.</li><li>비밀번호는 일상적으로 사용되는 비밀번호일 수 없습니다.</li><li>비밀번호는 전부 숫자로 할 수 없습니다.</li></ul><p></p>
-    <p><label for="id_password2">비밀번호 확인:</label> <input type="password" name="password2" required="" id="id_password2"> <span class="helptext">확인을 위해 이전과 동일한 비밀번호를 입력하세요. </span></p>
-    <p><label for="id_p_phone">P phone:</label> <input type="text" name="p_phone" required="" id="id_p_phone"></p>
-    <p><label for="id_p_email">P email:</label> <input type="email" name="p_email" required="" id="id_p_email"></p>
-        <button type="submit">공연자 회원가입</button>
-    </form></body></html>
+        <p>
+            <div class="form-group">
+                <label for="id_p_name" class='esup'>아이디: <span class="required">*</span></label> 
+                <input type="text" name="p_name" class="form-control" id="id_c_name" aria-describedby="emailHelp" placeholder="likelion123" required>
+            </div>
+        </p>
+        <p>
+            <div class="form-group">
+                <label for="id_password1" class='esup'>비밀번호: <span class="required">*</span></label>
+                <input type="password" class="form-control" id="id_passsword1" name = "password1" placeholder="비밀번호 입력" required>
+            </div>
+        </p>
+        <p>
+            <div class="form-group">
+                <label for="id_password2" class='esup'>비밀번호 확인: <span class="required">*</span></label>
+                <input type="password" class="form-control" id="id_passsword2" name = "password2" placeholder="비밀번호 입력" required>
+                <small id="passwordHelp" class="form-text text-muted helptext esup">확인을 위해 이전과 동일한 비밀번호를 입력하세요. </small>
+            </div>
+        </p>
+
+        <br>
+
+        <p>
+            <div class="form-group">
+                <label for="id_username" class='esup'>사용자 이름: <span class="required">*</span></label> 
+                <input type="text" class="form-control username" id="id_username" aria-describedby="emailHelp" placeholder="홍길동"
+                maxlength = "150" name="username" required>
+                <small id="nameHelp" class="form-text text-muted helptext esup">정확한 이름을 입력하세요.</small>
+            </div>
+        </p>
+        <p> 
+            <div class="form-group">
+                <label for="id_p_phone" class='esup'>핸드폰 번호: <span class="required">*</span></label> 
+                <input type="text" class="form-control username" id="id_p_phone" aria-describedby="emailHelp" placeholder="01012345678"
+                maxlength = "150" name = "p_phone" required>
+                <small id="nameHelp" class="form-text text-muted helptext esup">대쉬(-) 없이 숫자만 입력하세요.</small>
+            </div>
+        </p>
+        <p>
+            <div class="form-group">
+                <label for="id_p_email" class='esup'>이메일 주소: <span class="required">*</span></label>
+                <input type="email" name="p_email" class="form-control" id="id_p_email" placeholder="name@example.com" required>
+            </div>
+        </p>
+        <div class='btn_container'>
+            <button class='register_button' type="submit">
+                <img class='btn_register' src="{% static 'images/btn_register.jpeg' alt='btn upload fail' %}">
+            </button>
+        </div>
+    </form>
+    </div>
+    </body>
+</html>
