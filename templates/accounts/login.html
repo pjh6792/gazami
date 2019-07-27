@@ -1,13 +1,31 @@
-<h2>로그인</h2>
-<form method="POST">
-    {% csrf_token %}
-    Username<br>
-    <input name="username" type="text" value=""><br>
-    Password<br>
-    <input name="password" type="password" value="">
-    <br>
-    <input class="btn" type="submit" value='Login'>
-</form>
-<br>
-<a href = "{% url 'c_signup' %}">예매자 회원가입</a>
-<a href = "{% url 'p_signup' %}">공연자 회원가입</a>
+<!DOCTYPE html>
+
+{% extends 'base/navbar.html' %}
+
+{% block content %}
+    {% load staticfiles %}
+    <html>
+        <head>
+            <link rel="stylesheet" href="{% static 'css/accounts_style.css' %}">
+            <link href="/docs/4.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        </head>
+        <body class="text-center">
+            <form class="form-signin">
+                <img src="{% static 'images/purple_gazami1.png' alt='btn upload fail' %}" width="22%">
+                <h1 class="h1_login h3 mb-3 font-weight-normal">로그인</h1>
+                <label for="inputId" class="sr-only"></label>
+                <input type="id" id="inputId" class="form-control" placeholder="Id" required="" autofocus=""><br/>
+                <label for="inputPassword" class="sr-only"></label>
+                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+                <div class='btn_container'>
+                    <button class='login_button' type="submit">
+                        <img class='btn_login' src="{% static 'images/btn_login.png' alt='btn upload fail' %}">
+                    </button>
+                </div>
+                <a href = "{% url 'c_signup' %}">예매자 회원가입</a><br>
+                <a href = "{% url 'p_signup' %}">공연자 회원가입</a>
+            </form>
+        </body>
+    {% endblock %}    
+</html>
+
