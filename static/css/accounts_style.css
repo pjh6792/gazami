@@ -22,7 +22,7 @@
 
 /* c_signup.html */
 .upper_blank{
-    height: 100px;
+    height: 50px;
 }
 
 .required{
@@ -48,7 +48,67 @@
     text-align: center;
 }
 
-h1{
+.h1_signup {
     text-align: center;
     margin-bottom: 50px;
+}
+
+/* login.html */
+
+body {
+  font-family: 'LeeHyunJi';
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  padding-top: 80px;
+  padding-bottom: 40px;
+  text-align: center;
+}
+
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+}
+
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="id"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.btn_login{
+    background-color:white;
+    width: 60%;
+    opacity: 0.7;
+}
+
+.login_button{
+    border: none;
+    background: none;
+    padding: 0;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.h1_login {
+    margin-block-start: 0.1em;
+    margin-block-end: 0.5wm;
 }
