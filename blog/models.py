@@ -13,7 +13,7 @@ class Post(models.Model):
     ticket_date = models.TextField(default = '')
     ticket_price = models.BigIntegerField()
  #   ticket_price = models.DecimalField(default = 0, max_digits=6, decimal_places=0)
-    ticket_amount = models.DecimalField(default = 0, max_digits=4, decimal_places=0)
+    ticket_amount = models.BigIntegerField()
     bankname = models.CharField(default = '', max_length=200)
  #   account = models.DecimalField(default = 0, max_digits=20, decimal_places=0)
     account = models.BigIntegerField()
