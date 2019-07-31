@@ -7,9 +7,7 @@
         <div class='upper_blank'></div>
         <h1 class = 'register esup h1_signup'>예매자 회원가입</h2>
     <form method="POST">
-        <input type="hidden" name="csrfmiddlewaretoken" value="LQTQAiTqQB1xeSAcB0KJneDzZvQXiCb2OzTeHSSe5nMJvuhYKvLsZ9q24OvjDzD0">
- 
-     
+        {% csrf_token %}
         <p>
             <div class="form-group">
                 <label for="id_c_name" class='esup'>아이디: <span class="required">*</span></label> 
