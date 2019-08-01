@@ -1,0 +1,36 @@
+<h1>메인</h1>
+
+{% if user.is_authenticated %}
+    <h3>반갑습니다. {{user.username}}님!</h3>
+    <a href="{% url 'new_performance' %}">글쓰기</a>
+    <a class="nav-item nav-link" href="javascript:{document.getElementById('logout').submit()}">로그아웃</a>
+    <form id="logout" method="POST" action="{% url 'logout' %}">
+    {% csrf_token %} <input type="hidden">
+{% else %}
+    <a href= "{% url 'login' %}">로그인</a>
+{% endif %}
+<br>
+
+
+{% for post in posts_list %}
+        <h3> 공연제목 : {{ post.show_title }}</h3>
+        <p> 작성자 : {{post.post_author}}</p>
+        {% if post.show_poster %}
+        <img src="{{post.show_poster.url}}" height=200>
+        {% endif %}
+        <p> 공연 날짜 : {{post.show_date}}</p>
+        <p> 공연 시간 : {{post.show_time}}</p>
+        <p> 공연 장소 : {{post.show_place}}</p>
+        <p> 티켓 날짜 : {{post.ticket_date}}</p>
+        <p> 티켓 가격 : {{post.ticket_price}}</p>
+        <p> 티켓 수량 : {{post.ticket_amount}}</p> 
+        <p> 은행명 : {{post.bankname}}</p> 
+        <p> 계좌번호 : {{post.account}}</p> 
+        <p> 판매시작날짜 : {{post.opendate}}</p>
+        <p> 판매종료날짜 : {{post.closedate}}</p>
+        <p> 취소마감날짜 : {{post.canceldate}}</p>
+        <p> 공연 상세 정보 : {{post.show_info_text}}</p>
+        {% if post.show_info_image %}
+        <img src="{{post.show_info_image.url}}" height=200>
+        {% endif %}
+{% endfor %}

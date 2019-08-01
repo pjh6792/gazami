@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+{% load staticfiles %}
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'css/accounts_style.css' %}">
+        <link rel="stylesheet" href="{% static 'css/navbar_style.css' %}">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="   crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light justify-content-between">
+            <a class="navbar-brand" href="{% url 'main' %}">
+                <img id='logo' src="{% static 'images/purple_gazami2.png' %}" width="60" height="40" alt="">
+            </a>
+            <form id='navbar-form' class="form-inline">
+                <img id='asking-gazami' src="{% static 'images/purple_gazami2.png'%}" width="60" height="40" alt="">
+                <input class="form-control mr-sm-2" id='search-text' type="search" placeholder="공연명 또는 공연자명을 검색하세요." aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" id='search-button' type="submit">
+                    <img id="search-button-img" src="{% static 'images/balloon_confirm.png'%}" width="70" height="30" alt="">
+                </button>
+                <img id='activate-search' src="{% static 'images/search.png'%}"  width="20" height="20" alt="act">
+                <img id='deactivate-search' src="{% static 'images/cancel.png'%}" width="20" height="20" alt="dea">
+            </form>
+        </nav>
+        {% block content %}
+        {% endblock %}
+    </body>
+    <script type='text/javascript' src="{% static 'js/javascript.js' %}"></script>
+</html>

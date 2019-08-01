@@ -1,0 +1,61 @@
+{% extends 'base/navbar.html' %}
+
+
+{% block content %}
+    {% load staticfiles %}
+        <div class='container'>
+        <div class='upper_blank'></div>
+        <h1 class = 'register esup h1_signup'>예매자 회원가입</h2>
+    <form method="POST" action="{% url 'c_signup' %}">
+        {% csrf_token %}
+        <p>
+            <div class="form-group">
+                <label for="id_username" class='esup'>아이디: <span class="required">*</span></label> 
+                <input type="text" name="username" class="form-control username" id="id_username" aria-describedby="emailHelp" 
+                placeholder="likelion123" required>
+            </div>
+        </p>
+        <p>
+            <div class="form-group">
+                <label for="id_password1" class='esup'>비밀번호: <span class="required">*</span></label>
+                <input type="password" class="form-control" id="id_passsword1" name = "password1" placeholder="비밀번호 입력" required>
+            </div>
+        </p>        
+        <p>
+            <div class="form-group">
+                <label for="id_password2" class='esup'>비밀번호 확인: <span class="required">*</span></label>
+                <input type="password" class="form-control" id="id_passsword2" name = "password2" placeholder="비밀번호 입력" required>
+                <small id="passwordHelp" class="form-text text-muted helptext esup">확인을 위해 이전과 동일한 비밀번호를 입력하세요. </small>
+            </div>
+        </p>       
+        <br>
+        <p>
+            <div class="form-group">
+                <label for="id_c_name" class='esup'>사용자 이름: <span class="required">*</span></label> 
+                <input type="text" class="form-control" id="id_c_name" aria-describedby="emailHelp" placeholder="홍길동"
+                maxlength = "150" name="c_name" required>
+                <small id="nameHelp" class="form-text text-muted helptext esup">정확한 이름을 입력하세요.</small>
+            </div>
+        </p>   
+        <p>
+            <div class="form-group">
+                <label for="id_c_phone" class='esup'>핸드폰 번호: <span class="required">*</span></label> 
+                <input type="text" class="form-control username" id="id_c_phone" aria-describedby="emailHelp" placeholder="01012345678"
+                maxlength = "150" name = "c_phone" required>
+                <small id="nameHelp" class="form-text text-muted helptext esup">대쉬(-) 없이 숫자만 입력하세요.</small>
+            </div>
+        </p>
+        <p>
+            <div class="form-group">
+                <label for="id_c_email" class='esup'>이메일 주소: <span class="required">*</span></label>
+                <input type="email" name="c_email" class="form-control" id="id_c_email" placeholder="name@example.com" required>
+            </div>
+        </p>
+        <div class='btn_container'>
+            <button class='register_button' type="submit">
+                <img class='btn_register' src="{% static 'images/btn_register.jpeg' alt='btn upload fail' %}">
+            </button>
+        </div>
+    </form>
+    </div>
+{% endblock %}

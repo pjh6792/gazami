@@ -1,0 +1,22 @@
+nav{
+    height: 66px;
+}
+
+#search-text{
+    width: 250px;
+}
+
+#search-button{
+    border: none;
+    background: none;
+    padding: 0;
+    margin-right: 20px;
+}
+
+#asking-gazami{
+    margin-right: 20px;
+}
+
+#search-button-img{
+    margin-left: 15px;
+}
