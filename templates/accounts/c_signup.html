@@ -6,12 +6,13 @@
         <div class='container'>
         <div class='upper_blank'></div>
         <h1 class = 'register esup h1_signup'>예매자 회원가입</h2>
-    <form method="POST">
+    <form method="POST" action="{% url 'c_signup' %}">
         {% csrf_token %}
         <p>
             <div class="form-group">
-                <label for="id_c_name" class='esup'>아이디: <span class="required">*</span></label> 
-                <input type="text" name="c_name" class="form-control" id="id_c_name" aria-describedby="emailHelp" placeholder="likelion123" required>
+                <label for="id_username" class='esup'>아이디: <span class="required">*</span></label> 
+                <input type="text" name="username" class="form-control username" id="id_username" aria-describedby="emailHelp" 
+                placeholder="likelion123" required>
             </div>
         </p>
         <p>
@@ -27,14 +28,12 @@
                 <small id="passwordHelp" class="form-text text-muted helptext esup">확인을 위해 이전과 동일한 비밀번호를 입력하세요. </small>
             </div>
         </p>       
-
         <br>
-
         <p>
             <div class="form-group">
-                <label for="id_username" class='esup'>사용자 이름: <span class="required">*</span></label> 
-                <input type="text" class="form-control username" id="id_username" aria-describedby="emailHelp" placeholder="홍길동"
-                maxlength = "150" name="username" required>
+                <label for="id_c_name" class='esup'>사용자 이름: <span class="required">*</span></label> 
+                <input type="text" class="form-control" id="id_c_name" aria-describedby="emailHelp" placeholder="홍길동"
+                maxlength = "150" name="c_name" required>
                 <small id="nameHelp" class="form-text text-muted helptext esup">정확한 이름을 입력하세요.</small>
             </div>
         </p>   
