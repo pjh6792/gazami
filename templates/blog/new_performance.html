@@ -1,7 +1,140 @@
-<h2>새 글</h2>
+<!DOCTYPE html>
+{% extends 'base/navbar.html' %}
 
-<form method="POST" class="post-form" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p}}
-    <button type="submit">Save</button>
-</form>
+{% block content %}
+{% load staticfiles %}
+    <div class='container'>
+    <div class='upper_blank'></div>
+    <h1 class="esup h1_center">새 공연 등록</h1>
+
+    <form method="POST" class="post-form" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="hidden" name="csrfmiddlewaretoken" value="OL3t7LXPdupoUaD8K00F0jhoH4jSGKs1Ru3RelWDsgaAbMkUTv1oCe4RMnYe1HUZ">
+        <div class='upper_blank'></div>
+        <div class='basic-info'>
+            <center>
+                <h3 class='esup h3_center'>기본 정보</h3>
+            </center>
+        </div>
+        <p>
+            <div class='form-group'>
+                <label for="id_show_title" class='esup'>공연/전시명: <span class="required">*</span></label>
+                <input type="text" name="show_title" class="form-control" maxlength="200" id="id_show_title" placeholder='OO동아리 n차 정기공연' required >
+            </div>
+        </p>
+        <p>
+            <div class='form-group'>
+                <label for="id_show_poster" class='esup'>포스터:</label>
+                <input type="file" class='form-control-file' name="show_poster" accept="image/*" id="id_show_poster">
+            </div>
+        </p>
+
+        <!-- 공연 일이 여러 날일 경우, input에 문제가 생김 -->
+        <p>
+            <div class='form-group'>
+                <label for="id_show_date" class='esup'>일시:</label>
+                <input type="text" class='form-control' name="show_date" id="id_show_date" placeholder='2019-1-20 ~ 2019-1-23'>
+            </div>
+        </p>
+
+        <p>
+            <div class='form-group'>
+                <label for="id_show_time" class='esup'>관람 시간: <span class="required">*</span></label>
+                <textarea name="show_time" cols="40" rows="10" id="id_show_time" class='form-control' placeholder='월요일: 6시 ~ 7시 30분&#13;&#10;수요일: 7시 ~ 8시 반&#13;&#10;금요일: 6시 ~ 7시 30분' required></textarea>
+            </div>
+        </p>
+        <p>
+            <div class='form-group'>
+                <label for="id_show_place" class='esup'>장소: <span class="required">*</span></label>
+                <textarea name="show_place" cols="40" rows="10" id="id_show_place" class='form-control' placeholder='주소형식으로 써주세요. 예)서울특별시 마포구 백범로 35 (신수동) 서강대학교 메리홀(M관)'required></textarea>
+            </div>
+        </p>
+
+        <!-- model에서 show_info_text에 blank=True를 넣어줘야 함 -->
+        <p>
+            <div class='form-group'>
+                <label for="id_show_info_text" class='esup'>공연 설명/안내사항 (텍스트):</label>
+                <textarea name="show_info_text" class='form-control' cols="40" rows="10" id="id_show_info_text"></textarea>
+            </div>
+        </p>
+        <p>
+            <div class='form-group'>
+                <label for="id_show_info_image" class='esup'>공연 설명/안내사항 (이미지):</label>
+                <input type="file" name="show_info_image" class='form-control-file' accept="image/*" id="id_show_info_image">
+            </div>
+        </p>
+
+
+        <div class='upper_blank'></div>
+        <div class='ticket-info'>
+            <center>
+                <h3 class='esup h3_center'>티켓 정보</h3>
+            </center>
+        </div>
+
+        <!-- 공연 일이 여러 날일 경우, input에 문제가 생김 -->
+        <p>
+            <div class='form-group'>
+                <label for="id_ticket_date" class='esup'>공연/전시 날짜: <span class="required">*</span></label>
+                <textarea name="ticket_date" cols="40" rows="10" id="id_ticket_date" class='form-control' placeholder="날짜별로 티켓을 만들어 드립니다. 공연이나 전시를 진행하는 날짜를 입력해주세요. 예)2019-1-20, 2019-1-21, 2019-1-22, 2019-1-23" required></textarea>
+            </div>
+        </p>
+
+        <p>
+            <div class='form-group'>
+                <label for="id_ticket_price" class='esup'>티켓 가격: <span class="required">*</span></label>
+                <div class='flex'>
+                    <input type="number" name="ticket_price" class='form-control' min="-9223372036854775808" max="9223372036854775807" id="id_ticket_price" placeholder='3000' required>
+                    <span class='esup won'>원</span>
+                </div>
+            </div>
+        </p>
+        <p>
+            <div class='form-group'>
+                <label for="id_ticket_amount" class='esup'>티켓 수량:<span class="required">*</span></label>
+                <div class='flex'>
+                    <input type="number" name="ticket_amount" class='form-control' min="-9223372036854775808" max="9223372036854775807"  id="id_ticket_amount" placeholder="1000" required>
+                    <span class='esup amount'>개</span>
+                </div>
+            </div>
+        </p>
+        <p>
+            <div class='form-group'>
+                <label for="id_bankname" class='esup'>입금 계좌 은행:<span class="required">*</span></label>
+                <input type="text" name="bankname" maxlength="200" class='form-control' placeholder='국민' id="id_bankname" required>
+            </div>
+        </p>
+        <p>
+            <div class='form-group'>
+                <label for="id_account" class='esup'>입금 계좌:<span class="required">*</span></label>
+                <input type="number" name="account" min="-9223372036854775808" max="9223372036854775807" class='form-control' id="id_account" placeholder='하이픈(-)없이 입력해주세요 예)12345601123456' required>
+            </div>
+        </p>
+        <p>
+            <div class='form-group'>
+                <label for="id_opendate" class='esup'>티켓 판매 시작일:<span class="required">*</span></label>
+                <input type="text" class='form-control' name="opendate" id="id_opendate" placeholder='2019-1-15' required>
+            </div>
+        </p>
+        <p>
+            <div class='form-group'>
+                <label for="id_closedate" class='esup'>티켓 판매 마감일: <span class="required">*</span></label>
+                <input type="text" class='form-control' name="closedate" id="id_closedate" placeholder="2019-1-19" required>
+            </div>
+        </p>
+        <p>
+            <div class='form-group'>
+                <label for="id_canceldate" class='esup'>티켓 취소 마감일:<span class="required">*</span></label>
+                <input type="text" class='form-control' name="canceldate" id="id_canceldate" placeholder='2019-1-20' required>
+            </div>
+        </p>
+        
+        <div class='upper_blank'></div>
+        <div class='btn_container'>
+            <button class='register_button' type="submit">
+                <img class='btn_register' src="{% static 'images/btn_upload.png' alt='btn upload fail' %}">
+            </button>
+        </div>
+    </form>
+    </div>
+{% endblock %}
