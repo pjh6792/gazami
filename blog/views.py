@@ -18,3 +18,6 @@ def new_performance(request):
         form = PostForm()
     
     return render(request, 'blog/new_performance.html', {'form': form})
+
+def c_mypage(request):
+    return render(request, 'blog/c_mypage.html')
