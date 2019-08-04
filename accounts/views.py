@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import c_RegisterForm, p_RegisterForm
+from .forms import c_RegisterForm, p_RegisterForm, c_updateForm, p_updateForm
 from django.contrib import auth
 from django.contrib.auth.models import User
 # Create your views here.
@@ -47,3 +47,23 @@ def logout(request):
         auth.logout(request)
         return redirect('main')
     return redirect('login')
+
+def c_update(request):
+    if request.method == 'POST':
+        form = c_updateForm(data=request.POST, instance=request.user)
+        if form.is_valid():
+            user = form.save()
+    else:
+        form = c_updateForm(instance=request.user)
+    return render(request, 'accounts/c_update.html',{'form':form})
+
+def p_update(request):
+    if request.method == 'POST':
+        form = p_updateForm(data=request.POST, instance=request.user)
+        if form.is_valid():
+            user = form.save()
+    else:
+        form = p_updateForm(instance=request.user)
+    return render(request, 'accounts/p_update.html',{'form':form})
+
+
