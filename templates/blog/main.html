@@ -18,10 +18,12 @@
         {% if post.show_poster %}
         <img src="{{post.show_poster.url}}" height=200>
         {% endif %}
-        <p> 공연 날짜 : {{post.show_date}}</p>
+        <p> 공연 시작 날짜 : {{post.show_start_date}}</p>
+        <p> 공연 종료 날짜 : {{post.show_end_date}}</p> 
         <p> 공연 시간 : {{post.show_time}}</p>
         <p> 공연 장소 : {{post.show_place}}</p>
-        <p> 티켓 날짜 : {{post.ticket_date}}</p>
+        <p> 티켓 시작 날짜 : {{post.ticket_start_date}}</p>
+        <p> 티켓 종료 날짜 : {{post.ticket_end_date}}</p>
         <p> 티켓 가격 : {{post.ticket_price}}</p>
         <p> 티켓 수량 : {{post.ticket_amount}}</p> 
         <p> 은행명 : {{post.bankname}}</p> 

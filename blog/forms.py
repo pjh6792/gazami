@@ -5,8 +5,8 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ['show_title', 
-         'show_poster' , 'show_date',  'show_time', 'show_place', 
-         'ticket_date', 'ticket_price', 
+         'show_poster' , 'show_start_date', 'show_end_date',  'show_time', 'show_place', 
+         'ticket_start_date','ticket_end_date' ,'ticket_price', 
          'ticket_amount', 'bankname', 'account', 
          'opendate', 
          'closedate', 'canceldate', 
