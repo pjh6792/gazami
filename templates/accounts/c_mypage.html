@@ -1,0 +1,20 @@
+<h1>예매자 마이페이지</h1>
+
+{% if user.is_authenticated %}
+    <h3>반갑습니다. {{user.username}}님!</h3>
+    <a href="{% url 'c_update' %}">회원정보수정</a>
+
+    <a class="nav-item nav-link" href="javascript:{document.getElementById('logout').submit()}">로그아웃</a>
+    <form id="logout" method="POST" action="{% url 'logout' %}">
+    {% csrf_token %} <input type="hidden">
+
+<br>
+<h3>내가 예매한 작품</h3>
+<br>
+<h3>지난공연</h3>
+
+{% else %}
+    <a href= "{% url 'login' %}">로그인</a>
+
+    {% endif %}
+

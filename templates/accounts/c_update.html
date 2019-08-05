@@ -1,0 +1,6 @@
+<h3>예매자 회원 정보 수정 페이지입니다.</h3>
+
+<form method="POST">{% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="save btn btn-default">수정하기</button>
+</form>
