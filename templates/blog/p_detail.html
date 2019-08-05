@@ -1,0 +1,13 @@
+<h1>공연자용 공연 상세정보 페이지</h1>
+<a href="{% url 'main' %}">메인으로가기</a>
+<br>
+<br>
+<div class="post">
+    {% if post.show_poster %}
+    <img src="{{post.show_poster.url}}" height=200>
+    {% endif %}
+    <h3><a href="{% url 'performance' index=post.pk %}">{{ post.show_title }}</a></h3>
+</div>
+<br>
+<h3>총 N개의 티켓이 예매되었습니다. :)</h3>
+<h3>예매자/취소자 정보</h3>
