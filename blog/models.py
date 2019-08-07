@@ -20,3 +20,9 @@ class Post(models.Model):
     canceldate = models.DateField(null=True, blank=True)
     show_info_text = models.TextField(default = '')
     show_info_image = models.ImageField(upload_to='images/', blank=True)
+
+class Comment(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    content = models.CharField(max_length=300)
+    timestamp = models.DateTimeField(default=timezone.now)

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Post
-from .forms import PostForm
+from .models import Post, Comment
+from .forms import PostForm, CommentForm
 # Create your views here.
 def main(request):
     posts = Post.objects.all
@@ -8,7 +8,18 @@ def main(request):
 
 def performance(request, index):
     post = get_object_or_404(Post, pk=index)
-    return render(request, 'blog/performance.html', {'post':post})
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.author = request.user
+            comment.post = post
+            comment.save()
+            return redirect('performance',index)
+    elif request.method == "GET":
+        form = CommentForm()
+        comments = Comment.objects.filter(post=post)
+        return render(request, 'blog/performance.html', {'post':post, 'form':form, 'comments':comments})
 
 def new_performance(request):
     if request.method == 'POST':
