@@ -24,3 +24,14 @@
     <img src="{{post.show_info_image.url}}" height=200>
     {% endif %}
 </div>
+<br>
+<h2>공연 댓글(기대평/후기)</h2>
+{% for comment in comments %}
+<div>{{comment.content}}        {{comment.author}}, {{comment.timestamp}}</div>
+{% endfor %}
+<br>
+<form method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="댓글작성">
+</form>
