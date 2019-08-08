@@ -17,11 +17,12 @@
 
 
 {% for post in posts_list %}
-        <h3> 공연제목 : {{ post.show_title }}</h3>
+        <h3><a href="{% url 'performance' index=post.pk %}">공연제목 : {{ post.show_title }}</a></h3>
         <p> 작성자 : {{post.post_author}}</p>
         {% if post.show_poster %}
         <img src="{{post.show_poster.url}}" height=200>
         {% endif %}
+<<<<<<< HEAD
         <p> 공연 시작 날짜 : {{post.show_start_date}}</p>
         <p> 공연 종료 날짜 : {{post.show_end_date}}</p> 
         <p> 공연 시간 : {{post.show_time}}</p>
@@ -39,4 +40,6 @@
         {% if post.show_info_image %}
         <img src="{{post.show_info_image.url}}" height=200>
         {% endif %}
+=======
+>>>>>>> 7593fa9f79bed1abdc392a7beb7626fae2c7044a
 {% endfor %}

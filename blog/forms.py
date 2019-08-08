@@ -1,5 +1,5 @@
 from django import forms
-from .models import Post
+from .models import Post, Comment
 
 class PostForm(forms.ModelForm):
     class Meta:
@@ -12,3 +12,9 @@ class PostForm(forms.ModelForm):
          'closedate', 'canceldate', 
          'show_info_text', 'show_info_image',
         ]
+
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['content',]

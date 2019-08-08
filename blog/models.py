@@ -25,8 +25,16 @@ class Post(models.Model):
     show_info_text = models.TextField(default = '', blank=True)
     show_info_image = models.ImageField(upload_to='images/', blank=True)
 
+<<<<<<< HEAD
 #Class Ticket(models.Model):
 #    ticket_start_date = models.CharField(default = '', max_length=100)
 #    ticket_end_date = models.CharFIeld(default = '', max_length=100)
 #    ticket_price = models.BigIntegerField(default = '')
     
+=======
+class Comment(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    content = models.CharField(max_length=300)
+    timestamp = models.DateTimeField(default=timezone.now)
+>>>>>>> 7593fa9f79bed1abdc392a7beb7626fae2c7044a

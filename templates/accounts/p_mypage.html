@@ -1,5 +1,6 @@
 <h1>공연자 마이페이지</h1>
-
+<a href="{% url 'main' %}">메인으로가기</a>
+<br>
 {% if user.is_authenticated %}
     <h3>반갑습니다. {{user.username}}님!</h3>
     <a href="{% url 'p_update' %}">회원정보수정</a>
@@ -8,13 +9,33 @@
     <form id="logout" method="POST" action="{% url 'logout' %}">
     {% csrf_token %} <input type="hidden">
 
+
 <br>
-<h3>현재 공연중인 작품</h3>
-<br>
-<h3>지난 공연</h3>
+    <h2>현재 {{user.username}}가 공연중인 작품</h2>
+    {% for post in posts_list %}
+        {% if post.post_author == user %}
+            <h3><a href="{% url 'p_detail' index=post.pk %}">공연제목 : {{ post.show_title }}</a></h3>
+            {% if post.show_poster %}
+            <img src="{{post.show_poster.url}}" height=200>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+    <br>
+    <a href="{% url 'new_performance' %}">+(공연 추가하기)</a>
+    <br>
+    <br>
+    <h2>지난 공연</h2>
+    {% for post in posts_list %}
+        {% if post.post_author == user %}
+            <h3><a href="{% url 'performance' index=post.pk %}">공연제목 : {{ post.show_title }}</a></h3>
+            {% if post.show_poster %}
+            <img src="{{post.show_poster.url}}" height=200>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
 
 {% else %}
     <a href= "{% url 'login' %}">로그인</a>
 
-    {% endif %}
+{% endif %}
 
