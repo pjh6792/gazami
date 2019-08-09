@@ -1,3 +1,6 @@
+*{
+  font-size: 40px;
+}
 /* font setting */
 /* if you want to change font to '이숲체', add the class 'esup' to the element you want */
 @font-face { font-family: 'LeeHyunJi'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/LeeHyunJi.woff') format('woff'); font-weight: normal; font-style: normal; }
@@ -5,16 +8,21 @@
     font-family: 'LeeHyunJi';
 }
 
+@font-face { font-family: '116angmuburi'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.0/116angmuburi.woff') format('woff'); font-weight: normal; font-style: normal; }
+.angmuburi{
+  font-family: '116angmuburi';
+  font-size: 100px;
+}
 
 /* applying font-family to the placeholder */
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
     font-family: 'LeeHyunJi';
   }
-  
+
   :-ms-input-placeholder { /* Internet Explorer 10-11 */
     font-family: 'LeeHyunJi';
   }
-  
+
   ::-ms-input-placeholder { /* Microsoft Edge */
     font-family: 'LeeHyunJi';
   }
@@ -27,12 +35,12 @@
 
 .required{
     color: red;
-    font-size: 20px;
+    font-size: 40px;
 }
 
 .btn_register{
     background-color:white;
-    width: 250px;
+    width: 400px;
     opacity: 0.7;
 }
 
@@ -55,7 +63,7 @@
 
 /* login.html */
 
-body {
+.login-body{
   font-family: 'LeeHyunJi';
   display: -ms-flexbox;
   display: flex;
@@ -111,4 +119,34 @@ body {
 .h1_login {
     margin-block-start: 0.1em;
     margin-block-end: 0.5wm;
+}
+
+/* p_mypage.html */
+.profile-cropper{
+  width: 400px;
+  height: 400px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.profile-img{
+  display: inline;
+  margin: 0 auto;
+  height: 100%;
+  width: auto;
+}
+
+.profile-container{
+  text-align: center;
+}
+
+.now-performing{
+  border-top: 1px solid rgb(253, 228, 4);
+  padding-top: 60px;
+}
+
+.btn_login_mypage{
+  width: 350px;
 }

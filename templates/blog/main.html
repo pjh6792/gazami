@@ -1,27 +1,84 @@
-<h1>메인</h1>
+{% extends 'base/navbar.html' %}
 
-{% if user.is_authenticated %}
-    <h3>반갑습니다. {{user.username}}님! {{user.c_name}} {{user.p_name}}</h3>
-    <a href="{% url 'new_performance' %}">글쓰기</a><br>
-<br>
-    {% if user.cuser.check %}
-    <a href="{% url 'c_mypage' %}">예매자 마이페이지</a>
+
+{% block content %}
+    {% load staticfiles %}
+    <div class='upper_blank_main'></div>
+
+
+    <div class="bd-example">
+    <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            {% for post in posts_list %}
+            <li data-target="#carouselExampleCaptions" data-slide-to="{{ forloop.counter0 }}" class="{% if forloop.counter0 == 0 %}active{% endif %}"></li>
+            {% endfor %}
+        </ol>
+        <div class="carousel-inner">
+            {% for post in posts_list %}
+            <div class="carousel-item {% if forloop.counter0 == 0 %}active{% endif %} carousel-container">
+                {% if post.show_poster %}
+                <a href="{% url 'performance' index=post.pk %}"><img src="{{post.show_poster.url}}" id="carousel-bgimg"></a>
+                {% else %}
+                <a href="{% url 'performance' index=post.pk %}"><img src="{% static 'images/purple_gazami1.png' %}" class="d-block carousel-bgimg-default" alt="..."></a>
+                <div class="carousel-caption">
+                    <h5 class='caption esup'>{{ post.show_title }}</h5>
+                    <p class='esup font-purple'>포스터가 없넹..?</p>
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+        </a>
+    </div>
+    </div>
+
+    <div class='container'>
+    {% if user.is_authenticated %}
+        <h4 class='nicetomeet esup'>반갑습니다, <br>{{user.username}}님!</h4>
+        <a class="btn btn-warning" href="javascript:{document.getElementById('logout').submit()}">로그아웃</a>
+        <form id="logout" method="POST" action="{% url 'logout' %}">
+        {% csrf_token %} <input type="hidden">
+        <div class="upper_blank"></div>
     {% else %}
-    <a href="{% url 'p_mypage' %}">공연자 마이페이지</a><br>
+        <div class="upper_blank"></div>
     {% endif %}
-    <a class="nav-item nav-link" href="javascript:{document.getElementById('logout').submit()}">로그아웃</a>
-    <form id="logout" method="POST" action="{% url 'logout' %}">
-    {% csrf_token %} <input type="hidden">
-{% else %}
-    <a href= "{% url 'login' %}">로그인</a>
-{% endif %}
-<br>
 
 
-{% for post in posts_list %}
-        <h3><a href="{% url 'performance' index=post.pk %}">공연제목 : {{ post.show_title }}</a></h3>
-        <p> 작성자 : {{post.post_author}}</p>
+
+
+    {% for post in posts_list %}
         {% if post.show_poster %}
-            <img src="{{post.show_poster.url}}" height=200>
-        {% endif %}
-{% endfor %}
+            <div class="card" style="width: 18rem;">
+                <img src="{{post.show_poster.url}}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title esup">"{{ post.show_title }}"보러 가자미!</h5>
+                <p class="card-text esup">{{post.post_author}}</p>
+                <a href="{% url 'performance' index=post.pk %}"><img class='btn_confirm_main' src="{% static 'images/balloon_confirm.png' alt='btn upload fail' %}"></a>
+            </div>
+            </div>
+            {% else %}
+            <div class="card" style="width: 18rem;">
+                <div class='no-poster-card'>
+                    <img src="{% static 'images/no_poster.png' %}" class="card-img-top" alt="...">
+                    <p class='esup font-purple'>지금 내 기분이 그래<br>포스터가 없넹..?</p>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title esup">"{{ post.show_title }}"보러 가자미!</h5>
+                    <p class="card-text esup">{{post.post_author}}</p>
+                    <a href="{% url 'performance' index=post.pk %}"><img class='btn_confirm_main' src="{% static 'images/balloon_confirm.png' alt='btn upload fail' %}"></a>
+                </div>
+            </div>
+            {% endif %}
+        <br>
+        <br>
+    {% endfor %}
+
+    </div>
+{% endblock %}

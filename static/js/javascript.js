@@ -6,11 +6,11 @@ $('#asking-gazami').hide();
 $('#activate-search').on('click', function(){
     var milliseconds = 100;
         $('#search-text').fadeIn(milliseconds), $('#search-button').fadeIn(milliseconds), $('#activate-search').hide(), $('#deactivate-search').show(),
-        $('#logo').fadeOut(milliseconds), $('#asking-gazami').fadeIn(milliseconds);
+        $('#logo').fadeOut(milliseconds), $('#asking-gazami').fadeIn(milliseconds), $('#navbar-my').fadeOut(milliseconds);
 });
 
 $('#deactivate-search').on('click', function(){
     var milliseconds = 100;
         $('#search-text').fadeOut(milliseconds), $('#search-button').fadeOut(milliseconds), $('#activate-search').show(),
-        $('#deactivate-search').hide(), $('#logo').fadeIn(milliseconds), $('#asking-gazami').fadeOut(milliseconds);
+        $('#deactivate-search').hide(), $('#logo').fadeIn(milliseconds), $('#asking-gazami').fadeOut(milliseconds), $('#navbar-my').fadeIn(milliseconds);
 });
