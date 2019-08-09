@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+from django.contrib.postgres.fields import ArrayField
 # Create your models here.
 
 class Post(models.Model):
@@ -11,6 +12,7 @@ class Post(models.Model):
     show_start_date = models.TextField(default='')
     show_end_date = models.TextField(default='')
     show_time = models.TextField(default = '')
+    
     show_place = models.TextField(default = '')
     #ticket_date = models.TextField(default = '')
     ticket_start_date = models.TextField(default='')
@@ -29,4 +31,9 @@ class Post(models.Model):
 #    ticket_start_date = models.CharField(default = '', max_length=100)
 #    ticket_end_date = models.CharFIeld(default = '', max_length=100)
 #    ticket_price = models.BigIntegerField(default = '')
-    
+
+class Comment(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    content = models.CharField(max_length=300)
+    timestamp = models.DateTimeField(default=timezone.now)
