@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Post, Comment, Ticket
 from .forms import PostForm, CommentForm, TicketForm
+from accounts.models import CUser
 # Create your views here.
 def main(request):
     posts = Post.objects.all
