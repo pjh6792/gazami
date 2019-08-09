@@ -3,6 +3,7 @@
 
 {% if user.is_authenticated %}
     <h3>반갑습니다. {{user.username}}님!</h3>
+    <h4> {{user.c_name}}</h4>
     <a href="{% url 'c_update' %}">회원정보수정</a>
 
     <a class="nav-item nav-link" href="javascript:{document.getElementById('logout').submit()}">로그아웃</a>

@@ -7,11 +7,10 @@ class c_RegisterForm(UserCreationForm):
     c_name = forms.CharField()
     c_email = forms.EmailField()
     c_phone = forms.CharField()
-
     class Meta:
         model = User
         fields = ['c_name', 'username' #ID
-        , 'password1', 'password2', 
+        , 'password1', 'password2',  
         'c_phone', 'c_email', 
         # 'c_image',
         ]

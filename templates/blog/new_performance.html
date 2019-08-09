@@ -7,9 +7,11 @@
     <div class='upper_blank'></div>
     <h1 class="esup h1_center">새 공연 등록</h1>
 
-    <form method="POST" class="post-form" enctype="multipart/form-data">
+     <form method="POST" class="post-form" enctype="multipart/form-data">
         {% csrf_token %}
-        <div class='upper_blank'></div>
+        <!-- {{ form.as_p}} -->
+
+         <div class='upper_blank'></div>
         <div class='basic-info'>
             <center>
                 <h3 class='esup h3_center'>기본 정보</h3>
@@ -28,7 +30,7 @@
             </div>
         </p>
 
-        <!-- 공연 일이 여러 날일 경우, input에 문제가 생김 -->
+        # 공연 일이 여러 날일 경우, input에 문제가 생김 
         <p>
             <div class='form-group'>
                 <label for="id_show_date" class='esup'>일시:</label>
@@ -49,7 +51,7 @@
             </div>
         </p>
 
-        <!-- model에서 show_info_text에 blank=True를 넣어줘야 함 -->
+        # model에서 show_info_text에 blank=True를 넣어줘야 함 
         <p>
             <div class='form-group'>
                 <label for="id_show_info_text" class='esup'>공연 설명/안내사항 (텍스트):</label>
@@ -70,21 +72,83 @@
                 <h3 class='esup h3_center'>티켓 정보</h3>
             </center>
         </div>
+        
+        # 공연 일이 여러 날일 경우, input에 문제가 생김 
 
-        <!-- 공연 일이 여러 날일 경우, input에 문제가 생김 -->
+
         <p>
             <div class='form-group'>
-                <label for="id_ticket_date" class='esup'>공연/전시 날짜: <span class="required">*</span></label>
-                <textarea name="ticket_date" cols="40" rows="10" id="id_ticket_date" class='form-control' placeholder="날짜별로 티켓을 만들어 드립니다. 공연이나 전시를 진행하는 날짜를 입력해주세요. 예)2019-1-20, 2019-1-21, 2019-1-22, 2019-1-23" required></textarea>
+                <label for="id_ticket_date_1" class='esup'>공연/전시 날짜: <span class="required">*</span></label>
+                <div class='ticket' id="ticket">
+                    <!--<input type="text" name="ticket_date_1" cols="40" rows="10" id="id_ticket_date_1" class='form-control' placeholder="날짜별로 티켓을 만들어 드립니다. 공연이나 전시를 진행하는 날짜를 입력해주세요. 예)2019-1-20, 2019-1-21, 2019-1-22, 2019-1-23" required>-->
+                </div>
             </div>
         </p>
 
+        
+<script>
+    var count = 1;
+    var countArray = new Array;
+    if(count<5) {
+        countArray.length=5-count;
+        for(var j=count, i=0 ; j<=4, i<5-count; j++, i++){
+            countArray[i] = j;
+        }
+    }
+    function addKeywordForm(){
+     
+        var addedFormDiv = document.getElementById("ticket");
+     //   var addedFormDiv2 = document.getElementById("price");
+        var nowcount = ($("div[id^='keyword_Frm']").length+1);
+        
+        var str = '<input type="text" name="ticket_date_' + countArray[0] + '" cols="40" rows="10" id="id_ticket_date_'+countArray[0] + 
+        '" class="form-control" placeholder="날짜별로 티켓을 만들어 드립니다. 공연이나 전시를 진행하는 날짜를 입력해주세요. 예)2019-1-20, 2019-1-21, 2019-1-22, 2019-1-23" required>' 
+        + '<input type="button" name="del_ticket" value="삭제" onclick="delKeywordForm('+countArray[0]+');">' +'<br>' +
+        '<input type="number" name="ticket_price_' + countArray[0] 
+        + '" class="form-control" min="-9223372036854775808" max="9223372036854775807" id="id_ticket_price_' + countArray[0]
+        + '" placeholder="3000" required> <span class="esup won">원</span>' +'<br>' +
+        ' <input type="number" name="ticket_amount_' + countArray[0]
+        + '" class="form-control" min="-9223372036854775808" max="9223372036854775807" id="id_ticket_amount_' + countArray[0]
+        + '" placeholder="1000" required> <span class="esup amount">개</span>'
+
+        if(nowcount<=4){
+            var addedDiv = document.createElement("div");
+            addedDiv.setAttribute("id", "keyword_Frm"+countArray[0]);
+            addedDiv.innerHTML = str;
+            addedFormDiv.appendChild(addedDiv);
+        //    addedDiv.innerHTML = str2;
+         //   addedFormDiv2.appendChild(addedDiv);
+            countArray.shift();
+        }
+        else{
+            alert("티켓은 4개까지 입력하실 수 있습니다.")
+        }
+    }
+    function delKeywordForm(thisCount){
+        var addedFormDiv = document.getElementById("ticket");
+      //  var addedFormDiv2 = document.getElementById("price");
+        var nowcount = $("div[id^=keyword_Frm]").length;
+        if(nowcount>=1){
+            var thisDiv = document.getElementById("keyword_Frm" + thisCount);
+            addedFormDiv.removeChild(thisDiv);
+       //     addedFormDiv2.removeChild(thisDiv);
+            countArray.push(thisCount);
+
+        }
+        else{
+            document.addedFormDiv.reset();
+         //   document.addedFormDiv2.reset();
+            
+        }
+    }
+</script> 
+    <input type="button" name="add_ticket" value="추가" onclick="addKeywordForm();"> 
         <p>
             <div class='form-group'>
                 <label for="id_ticket_price" class='esup'>티켓 가격: <span class="required">*</span></label>
-                <div class='flex'>
-                    <input type="number" name="ticket_price" class='form-control' min="-9223372036854775808" max="9223372036854775807" id="id_ticket_price" placeholder='3000' required>
-                    <span class='esup won'>원</span>
+                <div class='flex' id="price">
+                    <!-- <input type="number" name="ticket_price" class='form-control' min="-9223372036854775808" max="9223372036854775807" id="id_ticket_price" placeholder='3000' required>
+                    <span class='esup won'>원</span> -->
                 </div>
             </div>
         </p>
@@ -92,11 +156,13 @@
             <div class='form-group'>
                 <label for="id_ticket_amount" class='esup'>티켓 수량:<span class="required">*</span></label>
                 <div class='flex'>
-                    <input type="number" name="ticket_amount" class='form-control' min="-9223372036854775808" max="9223372036854775807"  id="id_ticket_amount" placeholder="1000" required>
-                    <span class='esup amount'>개</span>
+                    <!-- <input type="number" name="ticket_amount" class='form-control' min="-9223372036854775808" max="9223372036854775807"  id="id_ticket_amount" placeholder="1000" required>
+                    <span class='esup amount'>개</span> -->
                 </div>
             </div>
         </p>
+
+
         <p>
             <div class='form-group'>
                 <label for="id_bankname" class='esup'>입금 계좌 은행:<span class="required">*</span></label>
@@ -133,7 +199,8 @@
             <button class='register_button' type="submit">
                 <img class='btn_register' src="{% static 'images/btn_upload.png' alt='btn upload fail' %}">
             </button>
-        </div>
-    </form>
+        </div>  
+    </form> 
+
     </div>
 {% endblock %}

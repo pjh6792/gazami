@@ -20,6 +20,6 @@
         <h3><a href="{% url 'performance' index=post.pk %}">공연제목 : {{ post.show_title }}</a></h3>
         <p> 작성자 : {{post.post_author}}</p>
         {% if post.show_poster %}
-        <img src="{{post.show_poster.url}}" height=200>
+            <img src="{{post.show_poster.url}}" height=200>
         {% endif %}
 {% endfor %}
