@@ -1,19 +1,62 @@
-<h1>공연자용 공연 상세정보 페이지</h1>
-<a href="{% url 'main' %}">메인으로가기</a>
-<br>
-<br>
-<div class="post">
-    {% if post.show_poster %}
-    <img src="{{post.show_poster.url}}" height=200>
-    {% endif %}
-    <h3><a href="{% url 'performance' index=post.pk %}">{{ post.show_title }}</a></h3>
-</div>
-<br>
-<h3>총 N개의 티켓이 예매되었습니다. :)</h3>
-<h3>예매자/취소자 정보</h3>
-{% for ticket in tickets %}
-    {% if ticket.post == post %}
-    예매자: {{ticket.author}}  매수: {{ ticket.count }}
-    <br>
-    {% endif %}
-{% endfor %}  
+<!DOCTYPE html>
+{% extends 'base/navbar.html' %}
+
+{% block content %}
+{% load staticfiles %}
+    <head>
+        <link rel="stylesheet" href="{% static 'css/blog_style.css' %}">
+    </head>
+    <body class="esup">
+        {% if post.show_poster %}
+        <div class="poster_img">
+            <img src="{{post.show_poster.url}}"> 
+        </div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+        {% endif %}
+
+        <div>
+            <p id="post_title"> {{ post.show_title }}</p>
+            <p id="post_content" style="text-align: right"><a href="{% url 'performance' index=post.pk %}">공연 정보 수정&nbsp;</a></p>
+            <hr>
+        </div>
+        <br>
+        <div id="ticket_info">
+            <p id="post_mintitle">총 N/{{post.ticket_amount}} 개의 티켓이 예매되었습니다 :)</p>
+            <p id="post_mintitle">M개의 처리되지 않은 취소 요청이 있습니다 :(</p>
+        </div>
+
+        {% for ticket in tickets %}
+            {% if ticket.post == post %}
+            예매자: {{ticket.author}}  매수: {{ ticket.count }}
+            <br>
+            {% endif %}
+        {% endfor %}  
+
+        <div>
+            <p id="post_subtitle">예매자</p>
+            <table>
+                <tr>
+                    <th>이름</th><th>ID</th><th>전화번호</th><th>구매매수</th><th>입금액</th>
+                </tr>
+                {% for x in K %}
+                    <tr>
+                        <td>{{user.c_name}}</td> <td>{{user.username}}</td> <td>{{user.c_phone}}</td> <td></td> <td></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <div>
+            <p id="post_subtitle">취소자</p>
+            <table>
+                <tr>
+                    <th>이름</th><th>ID</th><th>전화번호</th><th>구매매수</th><th>환불액</th><th>환불계좌</th> <th>체크리스트</th>
+                </tr>
+                {% for x in K %}
+                    <tr>
+                        <td>{{user.c_name}}</td> <td>{{user.username}}</td> <td>{{user.c_phone}}</td> <td></td> <td></td> <td></td> <td><input type="checkbox" name="refund" value="refund_done"></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </body>
+{% endblock %}
