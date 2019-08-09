@@ -27,7 +27,7 @@
 <br>
 <h2>공연 댓글(기대평/후기)</h2>
 {% for comment in comments %}
-<div>{{comment.content}}        {{comment.author}}, {{comment.timestamp}}</div>
+<div>{{comment.content}}{{price}}        {{comment.author}}, {{comment.timestamp}}</div>
 {% endfor %}
 <br>
 <form method="POST">
