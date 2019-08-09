@@ -10,7 +10,8 @@ class c_RegisterForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ['c_name', 'username', 'password1', 'password2', 
+        fields = ['c_name', 'username' #ID
+        , 'password1', 'password2', 
         'c_phone', 'c_email', 
         # 'c_image',
         ]

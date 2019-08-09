@@ -26,8 +26,6 @@ def p_signup(request):
         form = p_RegisterForm()
     return render(request, 'accounts/p_signup.html', {'form':form})
             
-            
-
 def login(request):
     if request.method == 'POST':
         username = request.POST.get('username', False)
@@ -48,7 +46,7 @@ def logout(request):
         return redirect('main')
     return redirect('login')
 
-def c_update(request):
+def c_update(request): #예매자 회원 회원정보 수정
     if request.method == 'POST':
         form = c_updateForm(data=request.POST, instance=request.user)
         if form.is_valid():
@@ -57,7 +55,7 @@ def c_update(request):
         form = c_updateForm(instance=request.user)
     return render(request, 'accounts/c_update.html',{'form':form})
 
-def p_update(request):
+def p_update(request): #공연자 회원 회원정보 수정
     if request.method == 'POST':
         form = p_updateForm(data=request.POST, instance=request.user)
         if form.is_valid():

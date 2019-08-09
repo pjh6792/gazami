@@ -19,7 +19,8 @@ def performance(request, index):
     elif request.method == "GET":
         form = CommentForm()
         comments = Comment.objects.filter(post=post)
-        return render(request, 'blog/performance.html', {'post':post, 'form':form, 'comments':comments})
+        price = post.ticket_price
+        return render(request, 'blog/performance.html', {'post':post, 'form':form, 'comments':comments, 'price':price})
 
 def new_performance(request):
     if request.method == 'POST':
