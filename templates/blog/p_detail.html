@@ -11,3 +11,9 @@
 <br>
 <h3>총 N개의 티켓이 예매되었습니다. :)</h3>
 <h3>예매자/취소자 정보</h3>
+{% for ticket in tickets %}
+    {% if ticket.post == post %}
+    예매자: {{ticket.author}}  매수: {{ ticket.count }}
+    <br>
+    {% endif %}
+{% endfor %}  

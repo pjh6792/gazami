@@ -1,3 +1,6 @@
+<head>
+    <meta charset="UTF-8">
+</head>
 <h1>예매자 마이페이지</h1>
 <a href="{% url 'main' %}">메인으로가기</a>
 
@@ -5,14 +8,25 @@
     <h3>반갑습니다. {{user.username}}님!</h3>
     <h4> {{user.c_name}}</h4>
     <a href="{% url 'c_update' %}">회원정보수정</a>
-
+    <h3>회원정보</h3>
+    <form method ="GET">
+        {{ form.as_p }}
+    </form>
+    <br>
     <a class="nav-item nav-link" href="javascript:{document.getElementById('logout').submit()}">로그아웃</a>
     <form id="logout" method="POST" action="{% url 'logout' %}">
     {% csrf_token %} <input type="hidden">
 
 <br>
 <h3>내가 예매한 작품</h3>
-<br>
+{% for ticket in tickets_list %}
+    {% if ticket.author == user %}
+    <a href="{% url 'performance' index=ticket.post.pk %}">{{ticket.post.show_title}}</a>
+    count: {{ ticket.count }}
+    <br>
+    {% endif %}
+{% endfor %}  
+
 <h3>지난공연</h3>
 
 {% else %}

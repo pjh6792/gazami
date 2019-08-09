@@ -1,30 +1,45 @@
 from django.shortcuts import render, redirect
-from .forms import c_RegisterForm, p_RegisterForm, c_updateForm, p_updateForm
+from .forms import c_RegisterForm, p_RegisterForm, c_updateForm, p_updateForm, cuserForm
 from django.contrib import auth
 from django.contrib.auth.models import User
+from .models import CUser, PUser
 # Create your views here.
 
 def c_signup(request):
-    if request.method == 'POST':
-        form = c_RegisterForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
+    if request.method == "POST":
+        if request.POST["password1"] == request.POST["password2"]:
+            user = User.objects.create_user(
+                username=request.POST["username"],
+                password=request.POST["password1"],
+                email=request.POST["email"],
+                first_name=request.POST["first_name"],
+                )
+            cuser = CUser(
+                user=user,
+                c_phone=request.POST["c_phone"],
+                )
+            cuser.save()
+            auth.login(request,user)
             return redirect('main')
-    else:
-        form = c_RegisterForm()
-    return render(request, 'accounts/c_signup.html', {'form':form})
+    return render(request, 'accounts/c_signup.html')
 
 def p_signup(request):
-    if request.method == 'POST':
-        form = p_RegisterForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
+    if request.method == "POST":
+        if request.POST["password1"] == request.POST["password2"]:
+            user = User.objects.create_user(
+                username=request.POST["username"],
+                password=request.POST["password1"],
+                email=request.POST["email"],
+                first_name=request.POST["first_name"],
+                )
+            puser = PUser(
+                user=user,
+                p_phone=request.POST["p_phone"],
+                )
+            puser.save()
+            auth.login(request,user)
             return redirect('main')
-    else:
-        form = p_RegisterForm()
-    return render(request, 'accounts/p_signup.html', {'form':form})
+    return render(request, 'accounts/p_signup.html')
             
 def login(request):
     if request.method == 'POST':

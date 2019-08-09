@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Post, Comment
-from .forms import PostForm, CommentForm
+from .models import Post, Comment, Ticket
+from .forms import PostForm, CommentForm, TicketForm
+from accounts.models import CUser
 # Create your views here.
 def main(request):
     posts = Post.objects.all
@@ -19,8 +20,23 @@ def performance(request, index):
     elif request.method == "GET":
         form = CommentForm()
         comments = Comment.objects.filter(post=post)
-       # price = post.ticket_price
-        return render(request, 'blog/performance.html', {'post':post, 'form':form, 'comments':comments, })
+        tickets = Ticket.objects.filter(post=post)
+        return render(request, 'blog/performance.html', {'post':post, 'form':form, 'comments':comments, 'tickets':tickets})
+
+def pay(request, index):
+    post = get_object_or_404(Post, pk=index)
+    if request.method == 'POST':
+        form = TicketForm(request.POST, request.FILES)
+        if form.is_valid():
+            ticket = form.save(commit=False)
+            ticket.author = request.user
+            ticket.post = post
+            ticket.save()
+            return redirect('performance', index)
+    else:
+        form = TicketForm()
+    return render(request, 'blog/pay.html',{'form':form})
+
 
 def new_performance(request):
     if request.method == 'POST':
@@ -37,12 +53,17 @@ def new_performance(request):
 
 def p_detail(request, index):
     post = get_object_or_404(Post, pk=index)
-    return render(request, 'blog/p_detail.html', {'post':post})
+    tickets = Ticket.objects.all
+    return render(request, 'blog/p_detail.html', {'post':post, 'tickets':tickets})
 
 def c_mypage(request):
     posts = Post.objects.all
-    return render(request, 'accounts/c_mypage.html',{'posts_list' : posts})
+    tickets = Ticket.objects.all
+    return render(request, 'accounts/c_mypage.html',{'posts_list' : posts, 'tickets_list' : tickets})
 
 def p_mypage(request):
     posts = Post.objects.all
     return render(request, 'accounts/p_mypage.html',{'posts_list' : posts})
+
+
+

@@ -1,12 +1,14 @@
 <h1>메인</h1>
 
 {% if user.is_authenticated %}
-    <h3>반갑습니다. {{user.username}}님!</h3>
+    <h3>반갑습니다. {{user.username}}님! {{user.c_name}} {{user.p_name}}</h3>
     <a href="{% url 'new_performance' %}">글쓰기</a><br>
-<!--if 예매자회원일 경우-->
+<br>
+    {% if user.cuser.check %}
     <a href="{% url 'c_mypage' %}">예매자 마이페이지</a>
-<!--if 공연자회원일 경우-->
+    {% else %}
     <a href="{% url 'p_mypage' %}">공연자 마이페이지</a><br>
+    {% endif %}
     <a class="nav-item nav-link" href="javascript:{document.getElementById('logout').submit()}">로그아웃</a>
     <form id="logout" method="POST" action="{% url 'logout' %}">
     {% csrf_token %} <input type="hidden">
