@@ -14,7 +14,10 @@ def c_signup(request):
                 email=request.POST["email"],
                 first_name=request.POST["first_name"],
                 )
-            cuser = CUser(user=user)
+            cuser = CUser(
+                user=user,
+                c_phone=request.POST["c_phone"],
+                )
             cuser.save()
             auth.login(request,user)
             return redirect('main')
@@ -29,7 +32,10 @@ def p_signup(request):
                 email=request.POST["email"],
                 first_name=request.POST["first_name"],
                 )
-            puser = PUser(user=user)
+            puser = PUser(
+                user=user,
+                p_phone=request.POST["p_phone"],
+                )
             puser.save()
             auth.login(request,user)
             return redirect('main')
