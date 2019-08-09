@@ -26,3 +26,9 @@ class Comment(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     content = models.CharField(max_length=300)
     timestamp = models.DateTimeField(default=timezone.now)
+
+class Ticket(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE) #예매하는 공연정보
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True) #예매자정보
+    count = models.IntegerField(default = '1') #티켓 매수
+    timestamp = models.DateTimeField(default=timezone.now)

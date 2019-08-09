@@ -1,7 +1,10 @@
 <h1>performance 페이지 입니다.</h1>
 <a href="{% url 'main' %}">메인으로가기</a>
 <br>
-<h2>예매하기</h2>
+<!--예매자회원에게만 뜨게-->
+{% if user.is_authenticated %}
+<h2><a href="{% url 'pay' index=post.pk %}">예매하기</a></h2>
+{% endif %}
 <div class="post">
     <h3> 공연제목 : {{ post.show_title }}</h3>
     <p> 작성자 : {{post.post_author}}</p>
@@ -27,7 +30,7 @@
 <br>
 <h2>공연 댓글(기대평/후기)</h2>
 {% for comment in comments %}
-<div>{{comment.content}}{{price}}        {{comment.author}}, {{comment.timestamp}}</div>
+<div>{{comment.content}}       {{comment.author}}, {{comment.timestamp}}</div>
 {% endfor %}
 <br>
 <form method="POST">
@@ -35,3 +38,4 @@
     {{form.as_p}}
     <input type="submit" value="댓글작성">
 </form>
+<br>

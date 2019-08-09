@@ -1,7 +1,7 @@
 <h1>메인</h1>
 
 {% if user.is_authenticated %}
-    <h3>반갑습니다. {{user.username}}님!</h3>
+    <h3>반갑습니다. {{user.username}}님! {{user.c_name}} {{user.p_name}}</h3>
     <a href="{% url 'new_performance' %}">글쓰기</a><br>
 <!--if 예매자회원일 경우-->
     <a href="{% url 'c_mypage' %}">예매자 마이페이지</a>
