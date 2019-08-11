@@ -1,3 +1,10 @@
+/* font setting */
+/* if you want to change font to '이숲체', add the class 'esup' to the element you want */
+@font-face { font-family: 'LeeHyunJi'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/LeeHyunJi.woff') format('woff'); font-weight: normal; font-style: normal; }
+.esup{
+    font-family: 'LeeHyunJi';
+}
+
 /* new_performance.html */
 .h1_center{
     text-align:center;
@@ -105,4 +112,87 @@
     left: 0;
     right: 0;
     margin: auto;
+}
+
+/* performance.html */
+#unflex{
+    display: block !important;
+}
+
+#book-btn {
+    position : fixed;
+    bottom : 0px;
+    left: 0px;
+    right: 0px;
+    color: #fff;
+    background-color: #9164cf;
+    border-color: #9164cf;
+    border-radius: 5px;
+    font-size: 40px;
+}
+
+#link_color {
+    color: #fff;
+}
+
+.poster_img {
+    width : 100%;
+    height: auto;
+}
+
+.post{
+    background-color: #eeeeee;
+}
+
+#sec{
+    background-color: #fff;
+    padding : 10px;
+    margin : 0px 15px;
+}
+
+#post_title{
+    text-align: center;
+    font-size: 100px;
+    font-weight: bold;
+}
+
+#post_subtitle{
+    font-size: 70px;
+    font-weight: bold;
+    text-align: center;
+}
+
+#post_mintitle{
+    text-align: center;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+#post_content{
+    font-size: 40px;
+}
+
+#comment{
+    font-size: 35px;
+}
+
+tr{
+    font-size : 40px;
+}
+
+textarea.comment{
+    width : 100%;
+}
+
+#comment{
+    font-size:30px;
+}
+
+
+/* p_detail.html */
+#ticket_info {
+    padding : 10px;
+    margin : 0px 15px;
+    border : medium #9164cf;
+    border-radius: 2px;
 }
