@@ -58,3 +58,14 @@ class Ticket(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True) #예매자정보
     count = models.IntegerField(default = '1') #티켓 매수
     timestamp = models.DateTimeField(default=timezone.now)
+    T1 = 'Post.ticket_date_1'
+    T2 = 'Ticket2'
+    TICKET_CHOICES = [
+        (T1,'c1'),
+        (T2, 'Sophomore'),
+    ]
+    t_choice = models.CharField(
+        max_length=100,
+        choices=TICKET_CHOICES,
+        default=T1,
+    )

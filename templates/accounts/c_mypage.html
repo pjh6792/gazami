@@ -23,6 +23,7 @@
     {% if ticket.author == user %}
     <a href="{% url 'performance' index=ticket.post.pk %}">{{ticket.post.show_title}}</a>
     count: {{ ticket.count }}
+    {{ ticket.t_choice }}
     <br>
     {% endif %}
 {% endfor %}

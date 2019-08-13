@@ -37,7 +37,6 @@ def pay(request, index):
         form = TicketForm()
     return render(request, 'blog/pay.html',{'form':form})
 
-
 def new_performance(request):
     if request.method == 'POST':
         form = PostForm(request.POST, request.FILES)
