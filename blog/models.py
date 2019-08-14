@@ -45,6 +45,8 @@ class Post(models.Model):
     show_info_text = models.TextField(default = '')
     show_info_image = models.ImageField(upload_to='images/', blank=True)
 
+    check = models.BooleanField(default = False) #관리자승인
+
 
 
 

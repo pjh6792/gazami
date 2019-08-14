@@ -22,8 +22,16 @@
 {% for ticket in tickets_list %}
     {% if ticket.author == user %}
     <a href="{% url 'performance' index=ticket.post.pk %}">{{ticket.post.show_title}}</a>
-    count: {{ ticket.count }}
-    {{ ticket.t_choice }}
+    {% if ticket.t_choice == 'ticket1' %}
+    {{ ticket.post.ticket_date_1 }}
+    {% elif ticket.t_choice == 'ticket2' %}
+    {{ ticket.post.ticket_date_2 }}
+    {% elif ticket.t_choice == 'ticket3' %}
+    {{ ticket.post.ticket_date_3 }}
+    {% elif ticket.t_choice == 'ticket4' %}
+    {{ ticket.post.ticket_date_4 }}
+    {% endif %}
+    : {{ ticket.count }}매
     <br>
     {% endif %}
 {% endfor %}
