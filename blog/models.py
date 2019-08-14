@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.contrib.postgres.fields import ArrayField
+
 # Create your models here.
 
 class Post(models.Model):
@@ -58,11 +59,15 @@ class Ticket(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True) #예매자정보
     count = models.IntegerField(default = '1') #티켓 매수
     timestamp = models.DateTimeField(default=timezone.now)
-    T1 = 'Post.ticket_date_1'
-    T2 = 'Ticket2'
+    T1 = 'ticket1'
+    T2 = 'ticket2'
+    T3 = 'ticket3'
+    T4 = 'ticket4'
     TICKET_CHOICES = [
         (T1,'c1'),
-        (T2, 'Sophomore'),
+        (T2, 'c2'),
+        (T2, 'c3'),
+        (T2, 'c4'),
     ]
     t_choice = models.CharField(
         max_length=100,
