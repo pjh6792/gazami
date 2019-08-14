@@ -34,7 +34,7 @@ def pay(request, index):
             return redirect('c_mypage')
     else:
         form = TicketForm()
-    return render(request, 'blog/pay.html',{'post':post,'form':form})
+    return render(request, 'blog/pay.html',{'post':post,'form':form,})
 
 def new_performance(request):
     if request.method == 'POST':

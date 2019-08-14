@@ -12,6 +12,7 @@ class PUser(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     check = models.BooleanField(default = False)
     p_phone = models.CharField(max_length=11, default="")
+    approve = models.BooleanField(default = False)
    # p_image = forms.ImageField()
    # p_information = forms.CharField(widget=forms.Textarea)
     
