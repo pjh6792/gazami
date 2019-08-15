@@ -5,6 +5,7 @@ urlpatterns = [
     path('main/', views.main, name = 'main'),
     path('new_performance/', views.new_performance, name = 'new_performance'),
     path('performance/<int:index>',views.performance, name='performance'),
+    path('comment_delete/<int:comment_id>',views.comment_delete,name='comment_delete'),
     path('pay/<int:index>',views.pay, name='pay'),
     path('complete/',views.complete, name='complete'),
     path('p_detail/<int:index>',views.p_detail, name='p_detail'),

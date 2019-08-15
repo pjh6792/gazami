@@ -23,6 +23,14 @@ def performance(request, index):
         comments = Comment.objects.filter(post=post)
         return render(request, 'blog/performance.html', {'post':post, 'form':form, 'comments':comments})
 
+def comment_delete(request, comment_id):
+    comment = get_object_or_404(Comment, pk=comment_id)
+    post = get_object_or_404(Post, pk=comment.post.pk)
+    if request.user != comment.author:
+        messages.warning(requset, '권한없음')
+        return redirect('performance',index=comment.post.pk)
+    else:
+        return render(request, 'comment_delete',{'comment':comment})
 
 def pay(request, index): #예매하기
     post = get_object_or_404(Post, pk=index)
