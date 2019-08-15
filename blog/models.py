@@ -2,7 +2,11 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.contrib.postgres.fields import ArrayField
+<<<<<<< HEAD
+
+=======
 from datetime import date, datetime
+>>>>>>> master
 # Create your models here.
 
 class Post(models.Model):
@@ -44,6 +48,8 @@ class Post(models.Model):
     show_info_text = models.TextField(default = '', null=True, blank=True)
     show_info_image = models.ImageField(upload_to='images/', blank=True)
 
+    check = models.BooleanField(default = False) #관리자승인
+
 
 
 
@@ -60,3 +66,18 @@ class Ticket(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True) #예매자정보
     count = models.IntegerField(default = '1') #티켓 매수
     timestamp = models.DateTimeField(default=timezone.now)
+    T1 = 'ticket1'
+    T2 = 'ticket2'
+    T3 = 'ticket3'
+    T4 = 'ticket4'
+    TICKET_CHOICES = [
+        (T1,'c1'),
+        (T2, 'c2'),
+        (T2, 'c3'),
+        (T2, 'c4'),
+    ]
+    t_choice = models.CharField(
+        max_length=100,
+        choices=TICKET_CHOICES,
+        default=T1,
+    )
