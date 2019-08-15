@@ -25,6 +25,7 @@
             <p id="post_mintitle">M개의 처리되지 않은 취소 요청이 있습니다 :(</p>
         </div>
 
+    <!--이부분 그냥 무식하게 다 썼는데 좋은 방법있으면 고쳐주세오...-->
         {% for ticket in tickets %}
             {% if ticket.post == post %}
             {% if ticket.t_choice == 'ticket1' %}
