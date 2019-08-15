@@ -8,8 +8,9 @@ from .models import CUser
 class c_RegisterForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ['username', #ID, 
-        'first_name', 'last_name', 'email', 'password1', 'password2'
+        fields = ['username', #ID 
+        'first_name', #이름
+        'email', 'password1', 'password2'
         ]
 
         
