@@ -5,13 +5,14 @@
 {% load staticfiles %}
     <div class='container'>
     <div class='upper_blank'></div>
+    <div class='upper_blank'></div>
     <h1 class="esup h1_center">새 공연 등록</h1>
 
      <form method="POST" class="post-form" enctype="multipart/form-data">
         {% csrf_token %}
         <!-- {{ form.as_p}} -->
-
-         <div class='upper_blank'></div>
+        
+        <div class='upper_blank'></div>
         <div class='basic-info'>
             <center>
                 <h3 class='esup h3_center'>기본 정보</h3>
@@ -30,11 +31,16 @@
             </div>
         </p>
 
-        # 공연 일이 여러 날일 경우, input에 문제가 생김 
         <p>
             <div class='form-group'>
-                <label for="id_show_date" class='esup'>일시:</label>
-                <input type="text" class='form-control' name="show_date" id="id_show_date" placeholder='2019-1-20 ~ 2019-1-23'>
+                <label for="id_show_start_date" class='esup'>공연 시작 날짜:<span class="required">*</span</label>
+                <input type="date" class='form-control' name="show_start_date" id="id_show_start_date" placeholder='2019-01-20' required>
+            </div>
+        </p>
+        <p>
+            <div class='form-group'>
+                <label for="id_show_end_date" class='esup'>공연 마감 날짜:<span class="required">*</span</label>
+                <input type="date" class='form-control' name="show_end_date" id="id_show_end_date" placeholder='2019-01-20' required>
             </div>
         </p>
 
@@ -51,7 +57,7 @@
             </div>
         </p>
 
-        # model에서 show_info_text에 blank=True를 넣어줘야 함 
+        <!--model에서 show_info_text에 blank=True를 넣어줘야 함-->
         <p>
             <div class='form-group'>
                 <label for="id_show_info_text" class='esup'>공연 설명/안내사항 (텍스트):</label>
@@ -72,8 +78,6 @@
                 <h3 class='esup h3_center'>티켓 정보</h3>
             </center>
         </div>
-        
-        # 공연 일이 여러 날일 경우, input에 문제가 생김 
 
 
         <p>
@@ -101,15 +105,15 @@
      //   var addedFormDiv2 = document.getElementById("price");
         var nowcount = ($("div[id^='keyword_Frm']").length+1);
         
-        var str = '<input type="text" name="ticket_date_' + countArray[0] + '" cols="40" rows="10" id="id_ticket_date_'+countArray[0] + 
-        '" class="form-control" placeholder="날짜별로 티켓을 만들어 드립니다. 공연이나 전시를 진행하는 날짜를 입력해주세요. 예)2019-1-20, 2019-1-21, 2019-1-22, 2019-1-23" required>' 
-        + '<input type="button" name="del_ticket" value="삭제" onclick="delKeywordForm('+countArray[0]+');">' +'<br>' +
+        var str = '<input type="date" name="ticket_date_' + countArray[0] + '" cols="40" rows="10" id="id_ticket_date_'+countArray[0] + 
+        '" class="form-control" placeholder="날짜별로 티켓을 만들어 드립니다. 공연이나 전시를 진행하는 날짜를 입력해주세요.">' 
+        +'<br>' + '<div class="flex">' +
         '<input type="number" name="ticket_price_' + countArray[0] 
         + '" class="form-control" min="-9223372036854775808" max="9223372036854775807" id="id_ticket_price_' + countArray[0]
-        + '" placeholder="3000" required> <span class="esup won">원</span>' +'<br>' +
+        + '" placeholder="3000" style="width:300px;"> <span class="esup won">원</span>' + '</div>' + '<br>' + '<div class="flex">' +
         ' <input type="number" name="ticket_amount_' + countArray[0]
         + '" class="form-control" min="-9223372036854775808" max="9223372036854775807" id="id_ticket_amount_' + countArray[0]
-        + '" placeholder="1000" required> <span class="esup amount">개</span>'
+        + '" placeholder="1000" style="width:300px;"> <span class="esup amount">개</span>' +'</div>' +'<br>' + '<input type="button" class="btn btn-danger" name ="del_ticket" value="삭제" onclick="delKeywordForm('+countArray[0]+');">' +'<br>' + '<br>'
 
         if(nowcount<=4){
             var addedDiv = document.createElement("div");
@@ -142,13 +146,13 @@
         }
     }
 </script> 
-    <input type="button" name="add_ticket" value="추가" onclick="addKeywordForm();"> 
-        <p>
+    <input type="button" class="btn btn-warning" name="add_ticket" value="추가" onclick="addKeywordForm();"> 
+        <!-- <p>
             <div class='form-group'>
                 <label for="id_ticket_price" class='esup'>티켓 가격: <span class="required">*</span></label>
                 <div class='flex' id="price">
-                    <!-- <input type="number" name="ticket_price" class='form-control' min="-9223372036854775808" max="9223372036854775807" id="id_ticket_price" placeholder='3000' required>
-                    <span class='esup won'>원</span> -->
+                    ##<input type="number" name="ticket_price" class='form-control' min="-9223372036854775808" max="9223372036854775807" id="id_ticket_price" placeholder='3000' required>
+                    ##<span class='esup won'>원</span>
                 </div>
             </div>
         </p>
@@ -156,11 +160,11 @@
             <div class='form-group'>
                 <label for="id_ticket_amount" class='esup'>티켓 수량:<span class="required">*</span></label>
                 <div class='flex'>
-                    <!-- <input type="number" name="ticket_amount" class='form-control' min="-9223372036854775808" max="9223372036854775807"  id="id_ticket_amount" placeholder="1000" required>
-                    <span class='esup amount'>개</span> -->
+                    ##<input type="number" name="ticket_amount" class='form-control' min="-9223372036854775808" max="9223372036854775807"  id="id_ticket_amount" placeholder="1000" required>
+                    ##<span class='esup amount'>개</span>
                 </div>
             </div>
-        </p>
+        </p> -->
 
 
         <p>
@@ -177,20 +181,21 @@
         </p>
         <p>
             <div class='form-group'>
-                <label for="id_opendate" class='esup'>티켓 판매 시작일:<span class="required">*</span></label>
-                <input type="text" class='form-control' name="opendate" id="id_opendate" placeholder='2019-1-15' required>
+                <label for="id_opendate" class='esup'>티켓 판매 시작일:</label>
+                <input type="date" class='form-control' name="opendate" id="id_opendate" placeholder='2019-1-15'>
             </div>
         </p>
         <p>
             <div class='form-group'>
-                <label for="id_closedate" class='esup'>티켓 판매 마감일: <span class="required">*</span></label>
-                <input type="text" class='form-control' name="closedate" id="id_closedate" placeholder="2019-1-19" required>
+                <label for="id_closedate" class='esup'>티켓 판매 마감일: </label>
+                <input type="date" class='form-control' name="closedate" id="id_closedate" placeholder="2019-1-19">
             </div>
         </p>
         <p>
             <div class='form-group'>
-                <label for="id_canceldate" class='esup'>티켓 취소 마감일:<span class="required">*</span></label>
-                <input type="text" class='form-control' name="canceldate" id="id_canceldate" placeholder='2019-1-20' required>
+                <label for="id_canceldate" class='esup'>티켓 취소 마감일:
+                </label>
+                <input type="date" class='form-control' name="canceldate" id="id_canceldate" placeholder='2019-1-20'>
             </div>
         </p>
         

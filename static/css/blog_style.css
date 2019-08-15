@@ -19,11 +19,11 @@
 }
 
 #id_show_place{
-    height: 200px;
+    height: 400px;
 }
 
 #id_ticket_price{
-    width: 200px;
+    width: 100px;
 }
 
 .flex{
@@ -112,6 +112,10 @@
     left: 0;
     right: 0;
     margin: auto;
+}
+
+.hidden{
+    display: none;
 }
 
 /* performance.html */
