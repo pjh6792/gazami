@@ -3,6 +3,7 @@
 
 {% block content %}
 {% load staticfiles %}
+{% if user == post.post_author %} <!--해당공연자만 접근가능-->
     <head>
         <link rel="stylesheet" href="{% static 'css/blog_style.css' %}">
     </head>
@@ -26,7 +27,15 @@
 
         {% for ticket in tickets %}
             {% if ticket.post == post %}
-            예매자: {{ticket.author}}  매수: {{ ticket.count }}
+            {% if ticket.t_choice == 'ticket1' %}
+            예매자: {{ticket.author}} | 예매티켓: {{ ticket.post.ticket_date_1 }} 매수: {{ ticket.count }} 
+            {% elif ticket.t_choice == 'ticket2' %}
+            예매자: {{ticket.author}} | 예매티켓: {{ ticket.post.ticket_date_2 }} 매수: {{ ticket.count }} 
+            {% elif ticket.t_choice == 'ticket3' %}
+            예매자: {{ticket.author}} | 예매티켓: {{ ticket.post.ticket_date_3 }} 매수: {{ ticket.count }} 
+            {% elif ticket.t_choice == 'ticket4' %}
+            예매자: {{ticket.author}} | 예매티켓: {{ ticket.post.ticket_date_4 }} 매수: {{ ticket.count }} 
+            {% endif %}
             <br>
             {% endif %}
         {% endfor %}  
@@ -37,10 +46,12 @@
                 <tr>
                     <th>이름</th><th>ID</th><th>전화번호</th><th>구매매수</th><th>입금액</th>
                 </tr>
-                {% for x in K %}
+                {% for ticket in tickets %}
+                {% if ticket.post == post %}
                     <tr>
-                        <td>{{user.c_name}}</td> <td>{{user.username}}</td> <td>{{user.c_phone}}</td> <td></td> <td></td>
+                        <td>{{ticket.author.first_name}}</td> <td>{{ticket.author.username}}</td> <td>{{user.c_phone}}</td> <td></td> <td></td>
                     </tr>
+                {% endif %}
                 {% endfor %}
             </table>
         </div>
@@ -51,12 +62,15 @@
                 <tr>
                     <th>이름</th><th>ID</th><th>전화번호</th><th>구매매수</th><th>환불액</th><th>환불계좌</th> <th>체크리스트</th>
                 </tr>
-                {% for x in K %}
+                {% for ticket in tickets %}
+                {% if ticket.post == post %}
                     <tr>
-                        <td>{{user.c_name}}</td> <td>{{user.username}}</td> <td>{{user.c_phone}}</td> <td></td> <td></td> <td></td> <td><input type="checkbox" name="refund" value="refund_done"></td>
+                        <td>{{ticket.author.first_name}}</td> <td>{{ticket.author.username}}</td> <td>{{user.c_phone}}</td> <td></td> <td></td> <td></td> <td><input type="checkbox" name="refund" value="refund_done"></td>
                     </tr>
+                {% endif %}
                 {% endfor %}
             </table>
         </div>
     </body>
+{% endif %}
 {% endblock %}

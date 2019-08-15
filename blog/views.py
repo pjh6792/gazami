@@ -21,8 +21,7 @@ def performance(request, index):
     elif request.method == "GET":
         form = CommentForm()
         comments = Comment.objects.filter(post=post)
-        tickets = Ticket.objects.filter(post=post)
-        return render(request, 'blog/performance.html', {'post':post, 'form':form, 'comments':comments, 'tickets':tickets})
+        return render(request, 'blog/performance.html', {'post':post, 'form':form, 'comments':comments})
 
 def pay(request, index):
     post = get_object_or_404(Post, pk=index)
@@ -33,11 +32,13 @@ def pay(request, index):
             ticket.author = request.user
             ticket.post = post
             ticket.save()
-            return redirect('performance', index)
+            return render(request, 'blog/complete.html',{'ticket':ticket, 'post':post})
     else:
         form = TicketForm()
-    return render(request, 'blog/pay.html',{'form':form})
+    return render(request, 'blog/pay.html',{'form':form, 'post':post})
 
+def complete(request):
+    return render(request, 'blog/complete.html')
 
 def new_performance(request):
     if request.method == 'POST':
