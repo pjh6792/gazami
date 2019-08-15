@@ -7,6 +7,19 @@
 
         <br>
         {% if user.is_authenticated %}
+        {% if user.cuser.check %}
+        <br>
+        <br>
+        <br>
+        <div class='profile-container'>
+            <h4 class='esup'>공연자 회원만 이용 가능한 서비스입니다!</h4>
+            <br>
+            <a href= "{% url 'main' %}"><img class='btn_login_mypage' src="{% static 'images/btn_confirm.png' alt='btn upload fail' %}"></a>
+        </div>
+        {% else %}
+
+
+        
             <!-- 프로필 이미지가 들어가야 한다 -->
             <div class='profile-container'>
                 <div class='profile-cropper'>
@@ -90,6 +103,7 @@
                 {% endif %}
             {% endif %}
         {% endfor %}
+        {% endif %}
 
 
         {% else %}

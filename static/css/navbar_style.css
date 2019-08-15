@@ -1,3 +1,7 @@
+.navbar-default{
+    background-color: #5c00fce3;
+}
+
 nav{
     height: 150px;
 }
@@ -24,4 +28,8 @@ nav{
 
 #activate-search{
     margin-right: 30px;
+}
+
+.navbar-my-login{
+    color: black;
 }
