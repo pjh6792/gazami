@@ -76,3 +76,10 @@ class Ticket(models.Model):
         choices=TICKET_CHOICES,
         default=T1,
     )
+
+class CanceledTicket(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE) #예매한 공연정보
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True) #예매자정보
+    ticket = models.ForeignKey(Ticket, on_delete=models.CASCADE) #취소 티켓정보
+    refund_bank = models.CharField(default = '', max_length=200) #환불계좌은행
+    refund_account = models.BigIntegerField() #환불계좌번호
