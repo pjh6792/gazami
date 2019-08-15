@@ -9,18 +9,11 @@
     <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
             {% for post in posts_list %}
-<<<<<<< HEAD
-            {% if post.check %}
-            <li data-target="#carouselExampleCaptions" data-slide-to="{{ forloop.counter0 }}" class="{% if forloop.counter0 == 0 %}active{% endif %}"></li>
-            {% endif %}
-=======
                 <li data-target="#carouselExampleCaptions" data-slide-to="{{ forloop.counter0 }}" class="{% if forloop.counter0 == 0 %}active{% endif %}"></li>
->>>>>>> master
             {% endfor %}
         </ol>
         <div class="carousel-inner">
             {% for post in posts_list %}
-            {% if post.check %}
             <div class="carousel-item {% if forloop.counter0 == 0 %}active{% endif %} carousel-container">
                 {% if post.show_poster %}
                 <a href="{% url 'performance' index=post.pk %}"><img src="{{post.show_poster.url}}" id="carousel-bgimg"></a>
@@ -32,7 +25,6 @@
                 </div>
                 {% endif %}
             </div>
-            {% endif %}
             {% endfor %}
         </div>
         <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
@@ -62,7 +54,6 @@
 
 
     {% for post in posts_list %}
-    {% if post.check %}
         {% if post.show_poster %}
             <div class="card" style="width: 18rem;">
                 <img src="{{post.show_poster.url}}" class="card-img-top" alt="...">
@@ -87,7 +78,6 @@
             {% endif %}
         <br>
         <br>
-    {% endif %}
     {% endfor %}
 
 

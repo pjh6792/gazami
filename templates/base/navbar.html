@@ -22,7 +22,7 @@
                         <a id="navbar-my" href="{% url 'c_mypage' %}">
                             <img src="{% static 'images/mypage.png' %}" width="50" height="30" alt="">
                         </a>
-                    {% elif user.puser.check %}
+                    {% else %}
                         <a id="navbar-my" href="{% url 'p_mypage' %}">
                             <img src="{% static 'images/mypage.png' %}" width="50" height="30" alt="">
                         </a>

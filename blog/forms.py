@@ -34,4 +34,4 @@ class CommentForm(forms.ModelForm):
 class TicketForm(forms.ModelForm):
     class Meta:
         model = Ticket
-        fields = ['t_choice','count',]
+        fields = ['count',]
