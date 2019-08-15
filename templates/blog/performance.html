@@ -93,11 +93,13 @@
                     <form method="POST">
                         {% csrf_token %}
                         <p>
+                        {% if user.cuser.check %} <!--예매자회원에게만-->
                             <div class='form-group'>
                                 <label id="post_content" for="id_content" class='esup'>후기를 남겨주세요. </label> <br>
                                 &nbsp;<textarea id="comment" name="content" cols="74" maxlength="300" required="" id="id_content"></textarea><br>
                                 &nbsp;<input class="btn btn-outline-dark"  id="comment" type="submit" value="댓글 작성">
                             </div>
+                        {% endif %}
                         </p>
                     </form>
                 </div>
@@ -106,7 +108,7 @@
         </div>
         <br> <br> <br>
         <!--예매자회원에게만 뜨게-->
-        {% if user.is_authenticated %}
+        {% if user.is_authenticated and user.cuser.check %}
         <button type="button" id="book-btn" class="btn btn-block"><a href="{% url 'pay' index=post.pk %}" id="link_color">예매하기</a></button>
         {% endif %}
         

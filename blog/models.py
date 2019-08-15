@@ -67,8 +67,8 @@ class Ticket(models.Model):
     TICKET_CHOICES = [
         (T1,'c1'),
         (T2, 'c2'),
-        (T2, 'c3'),
-        (T2, 'c4'),
+        (T3, 'c3'),
+        (T4, 'c4'),
     ]
     t_choice = models.CharField(
         max_length=100,
