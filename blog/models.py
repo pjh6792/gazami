@@ -44,6 +44,7 @@ class Post(models.Model):
     show_info_text = models.TextField(default = '', null=True, blank=True)
     show_info_image = models.ImageField(upload_to='images/', blank=True)
 
+    approve = models.BooleanField(default="False") #관리자승인용 False:미승인 True:승인
 
 
 
@@ -65,7 +66,7 @@ class Ticket(models.Model):
     T3 = 'ticket3'
     T4 = 'ticket4'
     TICKET_CHOICES = [
-        (T1,'c1'),
+        (T1, 'c1'),
         (T2, 'c2'),
         (T3, 'c3'),
         (T4, 'c4'),
