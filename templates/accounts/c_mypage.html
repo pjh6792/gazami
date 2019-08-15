@@ -1,35 +1,98 @@
-<head>
-    <meta charset="UTF-8">
-</head>
-<h1>예매자 마이페이지</h1>
-<a href="{% url 'main' %}">메인으로가기</a>
+<!DOCTYPE html>
+{% extends 'base/navbar.html' %}
 
-{% if user.is_authenticated %}
-    <h3>반갑습니다. {{user.username}}님!</h3>
-    <h4> {{user.c_name}}</h4>
-    <a href="{% url 'c_update' %}">회원정보수정</a>
-    <h3>회원정보</h3>
-    <form method ="GET">
-        {{ form.as_p }}
-    </form>
-    <br>
-    <a class="nav-item nav-link" href="javascript:{document.getElementById('logout').submit()}">로그아웃</a>
-    <form id="logout" method="POST" action="{% url 'logout' %}">
-    {% csrf_token %} <input type="hidden">
+{% block content %}
+    {% load staticfiles%}
+        <div class='upper_blank_main'></div>
 
-<br>
-<h3>내가 예매한 작품</h3>
-{% for ticket in tickets_list %}
-    {% if ticket.author == user %}
-    <a href="{% url 'performance' index=ticket.post.pk %}">{{ticket.post.show_title}}</a>
-    count: {{ ticket.count }}
-    <br>
-    {% endif %}
-{% endfor %}
+        <br>
+        {% if user.is_authenticated %}
+        {% if user.cuser.check %}
+            <!-- 프로필 이미지가 들어가야 한다 -->
+            <div class='profile-container'>
+                <div class='profile-cropper'>
+                    <img class='profile-img' src="{% static 'images/default_profile.png' %}" alt="">
+                </div>
+                <br>
+                <h3 class='esup'>{{ request.user.username }}</h3>
+                <a class='esup modify' href="{% url 'c_update' %}">회원정보수정</a>
+                <span>|</span>
+                <a class="esup" href="javascript:{document.getElementById('logout').submit()}">로그아웃</a>
+                <form id="logout" method="POST" action="{% url 'logout' %}">
+                {% csrf_token %} <input type="hidden">
+            </div>
 
-<h3>지난공연</h3>
+    <div class='container'>
+        <br>
+        <h3 class='esup now-performing'>"{{user.username}}"님이<br>예매한 공연</h3>
+        <br>
+        
+        <br>
+        <h3>내가 예매한 작품</h3>
+        {% for ticket in tickets_list %}
+            {% if ticket.author == user %}
+            <a href="{% url 'performance' index=ticket.post.pk %}">{{ticket.post.show_title}}</a>
+            count: {{ ticket.count }}
+            <br>
+            {% endif %}
+        {% endfor %}
 
-{% else %}
-    <a href= "{% url 'login' %}">로그인</a>
 
-    {% endif %}
+            <br>
+            <h3 class='esup now-performing'>지난 공연</h3>
+            <br>
+            {% for post in posts_list %}
+            {% if post.post_author == user %}
+                {% if post.show_poster %}
+                        <div class="card" style="width: 18rem;">
+                                <img src="{{post.show_poster.url}}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title esup">"{{ post.show_title }}"</h5>
+                                <p class="card-text esup">{{post.post_author}}</p>
+                                <a class='btn btn-warning esup' href="{% url 'performance' index=post.pk %}">자세히 보기</a>
+                            </div>
+                        </div>
+                        <br>
+                {% else %}
+                    <div class="card" style="width: 18rem;">
+                        <div class='no-poster-card'>
+                            <img src="{% static 'images/no_poster.png' %}" class="card-img-top" alt="...">
+                            <p class='esup font-purple'>지금 내 기분이 그래<br>포스터가 없넹..?</p>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title esup">"{{ post.show_title }}"</h5>
+                            <p class="card-text esup">{{post.post_author}}</p>
+                            <a class='btn btn-warning esup' href="{% url 'performance' index=post.pk %}">자세히 보기</a>
+                        </div>
+                    </div>
+                    <br>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+        {% else %}
+        <br>
+        <br>
+        <br>
+        <div class='profile-container'>
+            <h4 class='esup'>예매자 회원만 이용 가능한 서비스입니다!</h4>
+            <br>
+            <a href= "{% url 'main' %}"><img class='btn_login_mypage' src="{% static 'images/btn_confirm.png' alt='btn upload fail' %}"></a>
+        </div>
+        {% endif %}
+
+
+        {% else %}
+        <br>
+        <br>
+        <br>
+        <div class='profile-container'>
+            <h4 class='esup'>로그인이 필요한 서비스입니다!</h4>
+            <br>
+            <a href= "{% url 'login' %}"><img class='btn_login_mypage' src="{% static 'images/btn_login.png' alt='btn upload fail' %}"></a>
+        </div>
+        
+
+        {% endif %}
+    </div>
+
+{% endblock %}

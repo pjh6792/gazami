@@ -5,12 +5,11 @@
     {% load staticfiles %}
     <div class='upper_blank_main'></div>
 
-
     <div class="bd-example">
     <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
             {% for post in posts_list %}
-            <li data-target="#carouselExampleCaptions" data-slide-to="{{ forloop.counter0 }}" class="{% if forloop.counter0 == 0 %}active{% endif %}"></li>
+                <li data-target="#carouselExampleCaptions" data-slide-to="{{ forloop.counter0 }}" class="{% if forloop.counter0 == 0 %}active{% endif %}"></li>
             {% endfor %}
         </ol>
         <div class="carousel-inner">
@@ -38,6 +37,7 @@
         </a>
     </div>
     </div>
+    {{timechekcer}}
 
     <div class='container'>
     {% if user.is_authenticated %}
@@ -79,6 +79,7 @@
         <br>
         <br>
     {% endfor %}
+
 
     </div>
 {% endblock %}
