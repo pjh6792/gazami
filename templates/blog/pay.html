@@ -2,8 +2,7 @@
 
 <body>
     <form method="POST">{% csrf_token %}
-        <input type="hidden" name="csrfmiddlewaretoken" value="cMYeQb7vkWcpnFPPu4oUUFW1loTQCfdEK0FerGINnVBnpPuyt5rFqxoYKVczTzI3">
-        <p><label for="id_t_choice">티켓 날짜 선택:</label> <select name="t_choice" id="id_t_choice">
+      <p><label for="id_t_choice">티켓 날짜 선택:</label> <select name="t_choice" id="id_t_choice">
       <option value="ticket1" selected="">{{ post.ticket_date_1 }}</option>
       <option value="ticket2">{{ post.ticket_date_2 }}</option>
       <option value="ticket2">{{ post.ticket_date_3 }}</option>
