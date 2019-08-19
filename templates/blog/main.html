@@ -3,6 +3,7 @@
 
 {% block content %}
     {% load staticfiles %}
+    
     <div class='upper_blank_main'></div>
 
     <div class="bd-example">
@@ -45,22 +46,24 @@
 
     <div class='container'>
     {% if user.is_authenticated %}
-        <h4 class='nicetomeet esup'>반갑습니다, <br>{{user.username}}님!</h4>
-        <a class="btn btn-warning" href="javascript:{document.getElementById('logout').submit()}">로그아웃</a>
+        <h4 class='nicetomeet hanna'>반갑습니다, <br>{{user.username}}님!</h4>
+        <br>
+        <a href="javascript:{document.getElementById('logout').submit()}"><img class='btn_confirm_main' src="{% static 'images/balloon_logout.png' alt='btn upload fail' %}"></a>
         <form id="logout" method="POST" action="{% url 'logout' %}">
         {% csrf_token %} <input type="hidden">
         <div class="upper_blank"></div>
     {% else %}
         <div class="upper_blank"></div>
     {% endif %}
+    </div>
 
 
 
-
+    
     {% for post in posts_list %}
     {% if post.approve %}
         {% if post.show_poster %}
-            <div class="card" style="width: 18rem;">
+            <div class="card card-main" >
                 <img src="{{post.show_poster.url}}" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title esup">"{{ post.show_title }}"보러 가자미!</h5>
@@ -69,7 +72,7 @@
             </div>
             </div>
             {% else %}
-            <div class="card" style="width: 18rem;">
+            <div class="card card-main" >
                 <div class='no-poster-card'>
                     <img src="{% static 'images/no_poster.png' %}" class="card-img-top" alt="...">
                     <p class='esup font-purple'>지금 내 기분이 그래<br>포스터가 없넹..?</p>
@@ -81,11 +84,10 @@
                 </div>
             </div>
             {% endif %}
-        <br>
-        <br>
     {% endif %}
     {% endfor %}
+    
 
 
-    </div>
+    
 {% endblock %}

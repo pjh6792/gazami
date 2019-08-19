@@ -26,7 +26,7 @@
                     <img class='profile-img' src="{% static 'images/default_profile.png' %}" alt="">
                 </div>
                 <br>
-                <h3 class='esup'>{{ request.user.username }}</h3>
+                <h3 class='hanna'>{{ request.user.username }}</h3>
                 <a class='esup modify' href="{% url 'p_update' %}">회원정보수정</a>
                 <span>|</span>
                 <a class="esup" href="javascript:{document.getElementById('logout').submit()}">로그아웃</a>
@@ -41,7 +41,7 @@
         {% for post in posts_list %}
             {% if post.post_author == user %}
                 {% if post.show_poster %}
-                        <div class="card" style="width: 18rem;">
+                        <div class="card">
                                 <img src="{{post.show_poster.url}}" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title esup">"{{ post.show_title }}"</h5>
