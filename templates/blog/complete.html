@@ -1,5 +1,19 @@
 <h1>예매가 완료되었습니다!</h1>
+<h3>예매정보</h3>
+예매공연 : {{ post.show_title}} <br>
+<!--이부분 그냥 무식하게 다 썼는데 좋은 방법있으면 고쳐주세오...-->
+{% if ticket.t_choice == 'ticket1' %}
+예매티켓 : {{ ticket.post.ticket_date_1 }} 
+{% elif ticket.t_choice == 'ticket2' %}
+예매티켓 : {{ ticket.post.ticket_date_2 }}
+{% elif ticket.t_choice == 'ticket3' %}
+예매티켓 : {{ ticket.post.ticket_date_3 }}  
+{% elif ticket.t_choice == 'ticket4' %}
+예매티켓 : {{ ticket.post.ticket_date_4 }} 
+{% endif %} <br>
+매수 : {{ ticket.count }}
+
 <br>
 <br>
 <a href="{% url 'performance' index=post.pk %}">공연정보</a>
-<a href="{% url 'c_mypage' %}">예매정보</a>
+<a href="{% url 'c_mypage' %}">마이페이지</a>

@@ -44,6 +44,7 @@ class Post(models.Model):
     show_info_text = models.TextField(default = '', null=True, blank=True)
     show_info_image = models.ImageField(upload_to='images/', blank=True)
 
+    approve = models.BooleanField(default="False") #관리자승인용 False:미승인 True:승인
 
 
 
@@ -65,7 +66,7 @@ class Ticket(models.Model):
     T3 = 'ticket3'
     T4 = 'ticket4'
     TICKET_CHOICES = [
-        (T1,'c1'),
+        (T1, 'c1'),
         (T2, 'c2'),
         (T3, 'c3'),
         (T4, 'c4'),
@@ -75,3 +76,10 @@ class Ticket(models.Model):
         choices=TICKET_CHOICES,
         default=T1,
     )
+
+class CanceledTicket(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE) #예매한 공연정보
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True) #예매자정보
+    ticket = models.ForeignKey(Ticket, on_delete=models.CASCADE) #취소 티켓정보
+    refund_bank = models.CharField(default = '', max_length=200) #환불계좌은행
+    refund_account = models.BigIntegerField() #환불계좌번호
