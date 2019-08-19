@@ -14,7 +14,7 @@
                     <img class='profile-img' src="{% static 'images/default_profile.png' %}" alt="">
                 </div>
                 <br>
-                <h3 class='esup'>{{ request.user.username }}</h3>
+                <h3 class='hanna'>{{ request.user.username }}</h3>
                 <a class='esup modify' href="{% url 'c_update' %}">회원정보수정</a>
                 <span>|</span>
                 <a class="esup" href="javascript:{document.getElementById('logout').submit()}">로그아웃</a>

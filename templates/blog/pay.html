@@ -1,18 +1,42 @@
+<!DOCTYPE html>
+{% extends 'base/navbar.html' %}
+
+{% block content %}
+{% load staticfiles %}
+
 {% if user.is_authenticated and user.cuser.check %}
-<h1>예매하기페이지입니다. 마지막push!</h1>
+<div class='container'>
+    <div class='upper_blank'></div>
+    <div class='upper_blank'></div>
+    <div class='upper_blank'></div>
+    <div class='upper_blank'></div>
+
+    <center><h3 class='esup h3_center_pay'>예매하기</h3></center>
     <br>
     <form method="POST">
         {% csrf_token %}
-        <p><label for="id_t_choice">티켓 선택하기:</label> 
-        <select name="t_choice" id="id_t_choice">
-            <option value="ticket1">{{ post.ticket_date_1 }}</option>
-            <option value="ticket2">{{ post.ticket_date_2 }}</option>
-            <option value="ticket3">{{ post.ticket_date_3 }}</option>
-            <option value="ticket4">{{ post.ticket_date_4 }}</option>
-        </select></p>
-        <p><label for="id_count">티켓 매수:</label> <input type="number" name="count" value="1" required="" id="id_count"></p>
-        <input type="submit" value="예매하기">
+        
+        <div class="form-group">
+            <p class='esup'><label for="id_t_choice">티켓 선택하기:</label>
+            <select name="t_choice" class="form-control" id="id_t_choice">
+                <option value="ticket1">{{ post.ticket_date_1 }}</option>
+                <option value="ticket2">{{ post.ticket_date_2 }}</option>
+                <option value="ticket3">{{ post.ticket_date_3 }}</option>
+                <option value="ticket4">{{ post.ticket_date_4 }}</option>
+            </select></p>
+        </div>
+        
+
+        <p class='esup'><label for="id_count">티켓 매수:</label><input class='form-control' type="number" name="count" value="1" required id="id_count"></p>
+        <div class='btn_container'>
+        <button class='register_button' type="submit">
+            <img class='btn_register' src="{% static 'images/btn_confirm.png' alt='btn upload fail' %}">
+        </button>
+        </div>
     </form>
+</div>
 {% else %}
 <h3>공연자회원은 예매할 수 없습니다.</h3>
 {% endif %}
+
+{% endblock %}
