@@ -12,12 +12,13 @@ from .forms import SearchForm
 from django.db.models import Q
 from django.shortcuts import render
 
+from datetime import date
 # Create your views here.
 def main(request):
     posts = Post.objects.all
     return render(request, 'blog/main.html', {'posts_list' : posts})
 
-def performance(request, index):
+def performance(request, index): 
     post = get_object_or_404(Post, pk=index)
     if request.method == 'POST':
         form = CommentForm(request.POST)
@@ -30,10 +31,18 @@ def performance(request, index):
     elif request.method == "GET":
         form = CommentForm()
         comments = Comment.objects.filter(post=post)
-        tickets = Ticket.objects.filter(post=post)
-        return render(request, 'blog/performance.html', {'post':post, 'form':form, 'comments':comments, 'tickets':tickets})
+        return render(request, 'blog/performance.html', {'post':post, 'form':form, 'comments':comments})
 
-def pay(request, index):
+def comment_delete(request, comment_id):
+    comment = get_object_or_404(Comment, pk=comment_id)
+    post = get_object_or_404(Post, pk=comment.post.pk)
+    if request.user != comment.author:
+        messages.warning(requset, '권한없음')
+        return redirect('performance',index=comment.post.pk)
+    else:
+        return render(request, 'comment_delete',{'comment':comment})
+
+def pay(request, index): #예매하기
     post = get_object_or_404(Post, pk=index)
     if request.method == 'POST':
         form = TicketForm(request.POST, request.FILES)
@@ -42,11 +51,13 @@ def pay(request, index):
             ticket.author = request.user
             ticket.post = post
             ticket.save()
-            return redirect('performance', index)
+            return render(request, 'blog/complete.html',{'ticket':ticket, 'post':post})
     else:
         form = TicketForm()
-    return render(request, 'blog/pay.html',{'form':form})
+    return render(request, 'blog/pay.html',{'form':form, 'post':post})
 
+def complete(request):
+    return render(request, 'blog/complete.html')
 
 def new_performance(request):
     if request.method == 'POST':

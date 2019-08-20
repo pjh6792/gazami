@@ -1,3 +1,16 @@
+/* font setting */
+/* if you want to change font to '이숲체', add the class 'esup' to the element you want */
+@font-face { font-family: 'LeeHyunJi'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/LeeHyunJi.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'BMHANNAAir'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.0/BMHANNAAir.woff') format('woff'); font-weight: normal; font-style: normal; }
+.esup{
+    font-family: 'BMHANNAAir';
+}
+
+@font-face { font-family: 'BMHANNAPro'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_seven@1.0/BMHANNAPro.woff') format('woff'); font-weight: normal; font-style: normal; }
+.hanna{
+    font-family: 'BMHANNAPro';
+}
+
 /* new_performance.html */
 .h1_center{
     text-align:center;
@@ -12,11 +25,11 @@
 }
 
 #id_show_place{
-    height: 200px;
+    height: 400px;
 }
 
 #id_ticket_price{
-    width: 200px;
+    width: 100px;
 }
 
 .flex{
@@ -105,4 +118,134 @@
     left: 0;
     right: 0;
     margin: auto;
+}
+
+.hidden{
+    display: none;
+}
+
+
+.card-main{
+    float: left;
+    width: 47%;
+    height: 1100px;
+    margin-left: 1.5%;
+    margin-right: 1.5%;
+    margin-top: 25px;
+    border-radius: 0% !important;
+}
+
+.card-img-top{
+    border-radius: 0% !important;
+}
+
+/* performance.html */
+#unflex{
+    display: block !important;
+}
+
+#book-btn {
+    position : fixed;
+    bottom : 0px;
+    left: 0px;
+    right: 0px;
+    color: #fff;
+    background-color: #9164cf;
+    border-color: #9164cf;
+    border-radius: 5px;
+    font-size: 40px;
+}
+
+#link_color {
+    color: #fff;
+}
+
+.poster_img {
+    width : 100%;
+    height: auto;
+}
+
+.post{
+    background-color: #eeeeee;
+}
+
+#sec{
+    background-color: #fff;
+    padding : 10px;
+    margin : 0px 15px;
+}
+
+#post_title{
+    text-align: center;
+    font-size: 100px;
+    font-weight: bold;
+}
+
+#post_subtitle{
+    font-size: 70px;
+    font-weight: bold;
+    text-align: center;
+}
+
+#post_mintitle{
+    text-align: center;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+#post_content{
+    font-size: 40px;
+}
+
+#comment{
+    font-size: 35px;
+}
+
+tr{
+    font-size : 40px;
+}
+
+textarea.comment{
+    width : 100%;
+}
+
+#comment{
+    font-size:30px;
+}
+
+
+/* p_detail.html */
+#ticket_info {
+    padding : 10px;
+    margin : 0px 15px;
+    border : medium #9164cf;
+    border-radius: 2px;
+}
+
+/* pay.html */
+.h3_center_pay{
+    text-align:center;
+    padding-bottom: 10px;
+    border-bottom: solid 0.5px rgb(253, 228, 4);
+    margin-bottom: 50px;
+    width: 450px;
+}
+
+.ticket-choices{
+    font-size: 50px;
+}
+
+/* complete.html */
+.complete-btn{
+    width: 500px;
+    color: black;
+}
+
+.reserve-info{
+    border: solid 2px black;
+    width: 700px;
+    margin: 0 auto;
+    padding-top: 150px;
+    padding-bottom: 100px;
+    border-radius: 30px;
 }

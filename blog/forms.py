@@ -34,7 +34,4 @@ class CommentForm(forms.ModelForm):
 class TicketForm(forms.ModelForm):
     class Meta:
         model = Ticket
-        fields = ['count',]
-
-class SearchForm(forms.Form):
-    search_word = forms.CharField(label='Search Word')
+        fields = ['t_choice','count',]

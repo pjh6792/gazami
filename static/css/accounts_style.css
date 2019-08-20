@@ -65,8 +65,6 @@
 
 .login-body{
   font-family: 'LeeHyunJi';
-  display: -ms-flexbox;
-  display: flex;
   -ms-flex-align: center;
   align-items: center;
   padding-top: 80px;

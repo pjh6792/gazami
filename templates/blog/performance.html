@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <h1>performance 페이지 입니다.</h1>
 <a href="{% url 'main' %}">메인으로가기</a>
 <br>
@@ -42,3 +43,125 @@
     <input type="submit" value="댓글작성">
 </form>
 <br>
+=======
+<!DOCTYPE html>
+{% extends 'base/navbar.html' %}
+
+{% block content %}
+{% load staticfiles %}
+    <head>
+        <link rel="stylesheet" href="{% static 'css/blog_style.css' %}">
+    </head>
+    <body class="esup" id="unflex">
+        {% if post.show_poster %}
+        <div class="poster_img">
+            <img src="{{post.show_poster.url}}"> 
+        </div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+        {% endif %}
+        <br>
+
+        <div class="post">
+            <br>
+            <div id="sec">
+                <p id="post_title"> {{ post.show_title }}</p>
+                <hr>
+                <p id="post_mintitle">기본 정보</p>
+                <hr>
+                <table id="sec_table">
+                    <tr>
+                        <th>공연 단체</th><td>&nbsp;&nbsp;&nbsp;{{post.post_author}}</td>
+                    </tr>
+                    <tr>
+                        <th>공연 날짜</th><td>&nbsp;&nbsp;&nbsp;{{post.show_date}}</td>
+                    </tr>
+                    <tr>
+                        <th>공연 시간</th><td>&nbsp;&nbsp;&nbsp;{{post.show_time}}</td>
+                    </tr>
+                    <tr>
+                        <th>공연 장소</th><td>&nbsp;&nbsp;&nbsp;{{post.show_place}}</td>
+                    </tr>
+                </table>
+            </div>
+            <br>
+            <div id="sec">
+                <p id="post_mintitle">가격 정보</p>
+                <hr>
+                <table id="sec_table">
+                    <tr>
+                        <th>티켓 가격</th><td>&nbsp;&nbsp;{{post.ticket_price}}</td>
+                    </tr>
+                    <tr>
+                        <th>티켓 개수</th><td>&nbsp;&nbsp;{{post.ticket_amount}}</td>
+                    </tr>
+                    <tr>
+                        <th>계좌 정보</th><td>&nbsp;&nbsp;{{post.bankname}} {{post.account}}</td>
+                    </tr>
+                </table>
+                <!-- <p id="post_content"> 티켓 날짜 : {{post.ticket_date}}</p> -->
+            </div>
+            <br>
+            <div id="sec">
+                <p id="post_mintitle">판매 기간 정보</p>
+                <hr>
+                <table id="sec_table">
+                    <tr>
+                        <th>판매 시작일</th><td>&nbsp;&nbsp;&nbsp;{{post.opendate}}</td>
+                    </tr>
+                    <tr>
+                        <th>판매 종료일</th><td>&nbsp;&nbsp;&nbsp;{{post.closedate}}</td>
+                    </tr>
+                    <tr>
+                        <th>취소 마감일</th><td>&nbsp;&nbsp;&nbsp;{{post.canceldate}}</td>
+                    </tr>
+                </table>
+            </div>
+            <br>
+            <div id="sec">
+                <p id="post_mintitle">공연 상세 정보</p>
+                <hr>
+                <p id="post_content"> {{post.show_info_text}}</p>
+                {% if post.show_info_image %}
+                <img src="{{post.show_info_image.url}}" width="100%">
+                {% endif %}
+            </div>
+            <br>
+            <div id="sec">
+                    <p id="post_subtitle">공연 댓글(기대평/후기)</p>
+                    {% for comment in comments %}
+                        <div>
+                            <p id="comment" style="color: #a3a3a3">{{comment.author}}, {{comment.timestamp}}</p>
+                            <p id="comment">{{comment.content}}</p>
+                            <hr>
+                        </div>
+                    {% endfor %}
+                    <br>
+                <div id="last_sec">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <p>
+                        {% if user.cuser.check %} <!--예매자회원에게만-->
+                            <div class='form-group'>
+                                <label id="post_content" for="id_content" class='esup'>후기를 남겨주세요. </label> <br>
+                                &nbsp;<textarea id="comment" name="content" cols="74" maxlength="300" required="" id="id_content"></textarea><br>
+                                &nbsp;<input class="btn btn-outline-dark"  id="comment" type="submit" value="댓글 작성">
+                            </div>
+
+                                <form action="" method ="post">{% csrf_token %}
+                                    <input type="submit" value="삭제하기">
+                                </form>
+                        {% endif %}
+                        </p>
+                    </form>
+                </div>
+            </div>
+            <br>
+        </div>
+        <br> <br> <br>
+        <!--예매자회원에게만 뜨게-->
+        {% if user.is_authenticated and user.cuser.check %}
+        <button type="button" id="book-btn" class="btn btn-block"><a href="{% url 'pay' index=post.pk %}" id="link_color">예매하기</a></button>
+        {% endif %}
+        
+    </body>
+{% endblock %}
+>>>>>>> eb3c54d9a87357c40fd3513db3e8f9bea7a3e3da

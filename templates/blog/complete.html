@@ -1,5 +1,55 @@
-<h1>예매가 완료되었습니다!</h1>
+<!DOCTYPE html>
+{% extends 'base/navbar.html' %}
+
+{% block content %}
+{% load staticfiles %}
+
 <br>
 <br>
-<a href="{% url 'performance' index=post.pk %}">공연정보</a>
-<a href="{% url 'c_mypage' %}">예매정보</a>
+<br>
+<br>
+<br>
+
+<div class='btn_container'>
+    
+    <h3 class='esup'>요청하신 예매가<br> 완료되었습니다!</h3>
+    <br>
+    <br>
+    <h3 class='esup'>예매정보</h3>
+    <br>
+    <div class='reserve-info'>
+    <p class='esup'>예매공연 : {{ post.show_title}}</p>
+    <!--이부분 그냥 무식하게 다 썼는데 좋은 방법있으면 고쳐주세오...-->
+    <p class='esup'>{% if ticket.t_choice == 'ticket1' %}
+    예매티켓 : {{ ticket.post.ticket_date_1 }} <br>
+    {% elif ticket.t_choice == 'ticket2' %} 
+    예매티켓 : {{ ticket.post.ticket_date_2 }} <br>
+    {% elif ticket.t_choice == 'ticket3' %}
+    예매티켓 : {{ ticket.post.ticket_date_3 }} <br>
+    {% elif ticket.t_choice == 'ticket4' %}
+    예매티켓 : {{ ticket.post.ticket_date_4 }} <br>
+    {% endif %}</p>
+    <p class='esup'>매수 : {{ ticket.count }}</p>
+    </div>
+    <br>
+    <br>
+    <br>
+    <button type='button' class='btn btn-warning complete-btn'><a class='complete-btn esup' href="{% url 'performance' index=post.pk %}">공연정보</a></button>
+    
+    <br>
+    <br>
+    <button type='button' class='btn btn-warning complete-btn'><a class='complete-btn esup' href="{% url 'c_mypage' %}">예매정보</a></button>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    
+
+</div>
+
+
+
+
+{% endblock %}
