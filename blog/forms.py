@@ -21,7 +21,7 @@ class PostForm(forms.ModelForm):
          'bankname', 'account', 
          'opendate', 
          'closedate', 'canceldate', 
-         'show_info_text', 'show_info_image', 'likes',
+         'show_info_text', 'show_info_image', 
         ]
         
 

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Post, Comment, Ticket
+from .models import Post, Comment, Ticket, PostLike
 from .forms import PostForm, CommentForm, TicketForm
 from accounts.models import CUser
 from django.contrib.auth.decorators import login_required
@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 
 #Import for search
 from django.views.generic.edit import FormView
-from .forms import SearchForm
+
 from django.db.models import Q
 from django.shortcuts import render
 
@@ -86,19 +86,16 @@ def p_mypage(request):
     posts = Post.objects.all
     return render(request, 'accounts/p_mypage.html',{'posts_list' : posts})
 
-def post_like(request, index):
-    post = get_object_or_404(Post, pk=index)
+@login_required
+def like(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    if PostLike.objects.filter(post=post, user=request.user).count() == 0:
+        PostLike.objects.create(post=post, user=request.user)
+    else : 
+        instance = PostLike.objects.get(post=post, user=request.user)
+        instance.delete()
+    return redirect('performance', index=pk)
 
-    if not request.user.is_active:
-        return redirect('performance', username=post.author, url=post.url)
-
-    user = User.objects.get(username = request.user)
-
-    if post.likes.filter(id = user.id).exists():
-        post.likes.remove(user)
-    else :
-        post.likes.add(user)
-    return redirect('performance', username=post.post_author, url=post.url)
 
 # def like(request, pk):
 #     post = get_object_or_404(Post, pk=pk)

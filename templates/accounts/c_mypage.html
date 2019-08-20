@@ -28,18 +28,18 @@
         <br>
         
         <br>
-        <h3>내가 예매한 작품</h3>
+        <h3>내가 예매한 공연</h3>
         {% for ticket in tickets_list %}
             {% if ticket.author == user %}
-            <a href="{% url 'performance' index=ticket.post.pk %}">{{ticket.post.show_title}}</a>
-            count: {{ ticket.count }}
+            공연명 : <a href="{% url 'performance' index=ticket.post.pk %}">{{ticket.post.show_title}}</a><br>
+            예매 매수: {{ ticket.count }}
             <br>
             {% endif %}
         {% endfor %}
 
 
             <br>
-            <h3 class='esup now-performing'>지난 공연</h3>
+            <h3 class='esup now-performing'>지난 예매한 공연</h3>
             <br>
             {% for post in posts_list %}
             {% if post.post_author == user %}

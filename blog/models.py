@@ -3,6 +3,8 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from django.contrib.postgres.fields import ArrayField
 from datetime import date, datetime
+from django.conf import settings
+from accounts import models as mo
 # Create your models here.
 
 class Post(models.Model):
@@ -45,9 +47,14 @@ class Post(models.Model):
     show_info_image = models.ImageField(upload_to='images/', blank=True)
 
     approve = models.BooleanField(default="False") #관리자승인용 False:미승인 True:승인
-
-
-
+    # like_user_set = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='like_user_set')
+    
+    # def like_count(self):
+    #     return self.like_user_set.count()
+    
+class PostLike(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
 

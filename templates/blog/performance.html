@@ -1,49 +1,3 @@
-<<<<<<< HEAD
-<h1>performance 페이지 입니다.</h1>
-<a href="{% url 'main' %}">메인으로가기</a>
-<br>
-<!--예매자회원에게만 뜨게-->
-{% if user.is_authenticated %}
-<h2><a href="{% url 'pay' index=post.pk %}">예매하기</a></h2>
-{% endif %}
-
-<a href="{% url 'post_like' index=post.pk %}"> 좋아요 {{post.total_likes}}</a>
-
-<div class="post">
-    <h3> 공연제목 : {{ post.show_title }}</h3>
-    <p> 작성자 : {{post.post_author}}</p>
-    {% if post.show_poster %}
-    <img src="{{post.show_poster.url}}" height=200>
-    {% endif %}
-    <p> 공연 날짜 : {{post.show_date}}</p>
-    <p> 공연 시간 : {{post.show_time}}</p>
-    <p> 공연 장소 : {{post.show_place}}</p>
-    <p> 티켓 날짜 : {{post.ticket_date}}</p>
-    <p> 티켓 가격 : {{post.ticket_price}}</p>
-    <p> 티켓 수량 : {{post.ticket_amount}}</p> 
-    <p> 은행명 : {{post.bankname}}</p> 
-    <p> 계좌번호 : {{post.account}}</p> 
-    <p> 판매시작날짜 : {{post.opendate}}</p>
-    <p> 판매종료날짜 : {{post.closedate}}</p>
-    <p> 취소마감날짜 : {{post.canceldate}}</p>
-    <p> 공연 상세 정보 : {{post.show_info_text}}</p>
-    {% if post.show_info_image %}
-    <img src="{{post.show_info_image.url}}" height=200>
-    {% endif %}
-</div>
-<br>
-<h2>공연 댓글(기대평/후기)</h2>
-{% for comment in comments %}
-<div>{{comment.content}}       {{comment.author}}, {{comment.timestamp}}</div>
-{% endfor %}
-<br>
-<form method="POST">
-    {% csrf_token %}
-    {{form.as_p}}
-    <input type="submit" value="댓글작성">
-</form>
-<br>
-=======
 <!DOCTYPE html>
 {% extends 'base/navbar.html' %}
 
@@ -57,9 +11,12 @@
         <div class="poster_img">
             <img src="{{post.show_poster.url}}"> 
         </div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
-        {% endif %}
+        {% endif %} 
         <br>
 
+        <p>좋아요 : {{ post.postlike_set.count }}개</p>
+            <a class="btn btn-info" href="{% url 'like' pk=post.pk %}">좋아요</a>  
+         
         <div class="post">
             <br>
             <div id="sec">
@@ -164,4 +121,3 @@
         
     </body>
 {% endblock %}
->>>>>>> eb3c54d9a87357c40fd3513db3e8f9bea7a3e3da
