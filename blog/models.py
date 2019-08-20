@@ -44,6 +44,7 @@ class Post(models.Model):
     show_info_text = models.TextField(default = '')
     show_info_image = models.ImageField(upload_to='images/', blank=True)
 
+    likes = models.ManyToManyField(User, related_name='likes')
 
 
 
@@ -58,3 +59,7 @@ class Ticket(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True) #예매자정보
     count = models.IntegerField(default = '1') #티켓 매수
     timestamp = models.DateTimeField(default=timezone.now)
+
+# class PostLike(models.Model):
+#     post = models.ForeignKey(Post, on_delete=models.CASCADE)
+#     user = models.ForeignKey(User, on_delete=models.CASCADE)

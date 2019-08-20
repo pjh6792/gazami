@@ -21,7 +21,7 @@ class PostForm(forms.ModelForm):
          'bankname', 'account', 
          'opendate', 
          'closedate', 'canceldate', 
-         'show_info_text', 'show_info_image',
+         'show_info_text', 'show_info_image', 'likes',
         ]
         
 
@@ -35,3 +35,6 @@ class TicketForm(forms.ModelForm):
     class Meta:
         model = Ticket
         fields = ['count',]
+
+class SearchForm(forms.Form):
+    search_word = forms.CharField(label='Search Word')

@@ -5,6 +5,9 @@
 {% if user.is_authenticated %}
 <h2><a href="{% url 'pay' index=post.pk %}">예매하기</a></h2>
 {% endif %}
+
+<a href="{% url 'post_like' index=post.pk %}"> 좋아요 {{post.total_likes}}</a>
+
 <div class="post">
     <h3> 공연제목 : {{ post.show_title }}</h3>
     <p> 작성자 : {{post.post_author}}</p>
