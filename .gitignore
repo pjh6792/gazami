@@ -9,3 +9,8 @@ settings.py
 db.sqlite3
 .DS_Store 
 *.ipynb
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
