@@ -4,8 +4,9 @@
 {% block content %}
     {% load staticfiles %}
         <div class='container'>
+        <div class='upper_blank'></div><div class='upper_blank'></div>
         <div class='upper_blank'></div>
-        <h1 class = 'register esup'>공연자 회원가입</h1>
+        <h1 class = 'register esup h1_signup'>공연자 회원가입</h1>
     <form method="POST" action="{% url 'p_signup' %}">
         {% csrf_token %}
         <p>
