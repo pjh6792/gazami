@@ -32,12 +32,15 @@
                 {% endif %}
             </div>
 
-            <form id='navbar-form' class="form-inline">
+            <form id='navbar-form' class="form-inline" method="POST">
+                {% csrf_token %}
                 <img id='asking-gazami' src="{% static 'images/purple_gazami2.png'%}" width="150" height="110" alt="">
-                <input class="form-control mr-sm-2" id='search-text' type="search" placeholder="공연명 또는 공연자명을 검색하세요." aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" id='search-button' type="submit">
-                    <img id="search-button-img" src="{% static 'images/balloon_confirm.png'%}" width="130" height="60" alt="">
-                </button>
+                <form method="POST">
+                    <input class="form-control mr-sm-2" id='search-text' type="search" placeholder="공연명 또는 공연자명을 검색하세요." aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" id='search-button' type="submit">
+                        <img id="search-button-img" src="{% static 'images/balloon_confirm.png'%}" width="130" height="60" alt="">
+                    </button>
+                </form>
                 <img id='activate-search' src="{% static 'images/search.png'%}"  width="60" height="60" alt="act">
                 <img id='deactivate-search' src="{% static 'images/cancel.png'%}" width="60" height="60" alt="dea">
             </form>

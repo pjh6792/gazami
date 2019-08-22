@@ -11,9 +11,12 @@
         <div class="poster_img">
             <img src="{{post.show_poster.url}}"> 
         </div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
-        {% endif %}
+        {% endif %} 
         <br>
 
+        <p>좋아요 : {{ post.postlike_set.count }}개</p>
+            <a class="btn btn-info" href="{% url 'like' pk=post.pk %}">좋아요</a>  
+         
         <div class="post">
             <br>
             <div id="sec">

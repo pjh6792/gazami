@@ -1,7 +1,17 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Post, Comment, Ticket
+from .models import Post, Comment, Ticket, PostLike
 from .forms import PostForm, CommentForm, TicketForm
 from accounts.models import CUser
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+
+
+#Import for search
+from django.views.generic.edit import FormView
+
+from django.db.models import Q
+from django.shortcuts import render
+
 from datetime import date
 # Create your views here.
 def main(request):
@@ -76,5 +86,19 @@ def p_mypage(request):
     posts = Post.objects.all
     return render(request, 'accounts/p_mypage.html',{'posts_list' : posts})
 
+@login_required
+def like(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    if PostLike.objects.filter(post=post, user=request.user).count() == 0:
+        PostLike.objects.create(post=post, user=request.user)
+    else : 
+        instance = PostLike.objects.get(post=post, user=request.user)
+        instance.delete()
+    return redirect('performance', index=pk)
 
 
+# def like(request, pk):
+#     post = get_object_or_404(Post, pk=pk)
+#     if PostLike.objects.filter(post=post, user=request.user).count() == 0:
+#         PostLike.objects.create(post=post, user=request.user)
+#     return redirect('blog/performance', post_id=pk)
