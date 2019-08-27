@@ -10,7 +10,15 @@ db.sqlite3
 .DS_Store 
 *.ipynb
 
+<<<<<<< HEAD
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+=======
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
+>>>>>>> bde4fbf510a3aa0024c41de76290f5cb0ced1a09
