@@ -13,4 +13,5 @@ urlpatterns = [
     path('p_mypage/',views.p_mypage, name='p_mypage'),
     # path('performance/<pk>/likes/', views.like, name='likes'),
     path('performance/<int:pk>/like', views.like, name = 'like'),
+    path('search/',views.search, name='search'),
 ]

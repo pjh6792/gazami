@@ -5,7 +5,6 @@ from accounts.models import CUser
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
-
 #Import for search
 from django.views.generic.edit import FormView
 
@@ -96,9 +95,13 @@ def like(request, pk):
         instance.delete()
     return redirect('performance', index=pk)
 
+def search(request):
+    template = 'blog/search.html'
+    query = request.GET.get('q')
+    results = Post.objects.all
+    if query:
+        results = Post.objects.filter(Q(show_title__icontains=query))
+   
+    return render(request, template, {'posts_list' : results})
 
-# def like(request, pk):
-#     post = get_object_or_404(Post, pk=pk)
-#     if PostLike.objects.filter(post=post, user=request.user).count() == 0:
-#         PostLike.objects.create(post=post, user=request.user)
-#     return redirect('blog/performance', post_id=pk)
+    # Create your views here.

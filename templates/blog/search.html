@@ -1,2 +1,93 @@
 {% extends 'base/navbar.html' %}
 
+{% block content %}
+    {% load staticfiles %}
+
+
+    <div class='upper_blank_main'></div>
+
+    <div class="bd-example">
+    <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            {% for post in posts_list %}
+            {% if post.approve %} <!--관리자 승인된 공연만 보여짐-->
+                <li data-target="#carouselExampleCaptions" data-slide-to="{{ forloop.counter0 }}" class="{% if forloop.counter0 == 0 %}active{% endif %}"></li>
+            {% endif %}
+            {% endfor %}
+        </ol>
+        <div class="carousel-inner">
+            {% for post in posts_list %}
+            {% if post.approve %}
+            <div class="carousel-item {% if forloop.counter0 == 0 %}active{% endif %} carousel-container">
+                {% if post.show_poster %}
+                <a href="{% url 'performance' index=post.pk %}"><img src="{{post.show_poster.url}}" id="carousel-bgimg"></a>
+                {% else %}
+                <a href="{% url 'performance' index=post.pk %}"><img src="{% static 'images/purple_gazami1.png' %}" class="d-block carousel-bgimg-default" alt="..."></a>
+                <div class="carousel-caption">
+                    <h5 class='caption esup'>{{ post.show_title }}</h5>
+                    <p class='esup font-purple'>포스터가 없넹..?</p>
+                </div>
+                {% endif %}
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+        </a>
+    </div>
+    </div>
+    {{timechekcer}}
+
+    <div class='container'>
+    {% if user.is_authenticated %}
+        <h4 class='nicetomeet hanna'>반갑습니다, <br>{{user.username}}님!</h4>
+        <br>
+        <a href="javascript:{document.getElementById('logout').submit()}"><img class='btn_confirm_main' src="{% static 'images/balloon_logout.png' alt='btn upload fail' %}"></a>
+        <form id="logout" method="POST" action="{% url 'logout' %}">
+        {% csrf_token %} <input type="hidden">
+        <div class="upper_blank"></div>
+    {% else %}
+        <div class="upper_blank"></div>
+    {% endif %}
+    </div>
+
+
+
+    
+    {% for post in posts_list %}
+    {% if post.approve %}
+        {% if post.show_poster %}
+            <div class="card card-main" >
+                <img src="{{post.show_poster.url}}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title esup">"{{ post.show_title }}"보러 가자미!</h5>
+                <p class="card-text esup">{{post.post_author}}</p>
+                <a href="{% url 'performance' index=post.pk %}"><img class='btn_confirm_main' src="{% static 'images/balloon_confirm.png' alt='btn upload fail' %}"></a>
+            </div>
+            </div>
+            {% else %}
+            <div class="card card-main" >
+                <div class='no-poster-card'>
+                    <img src="{% static 'images/no_poster.png' %}" class="card-img-top" alt="...">
+                    <p class='esup font-purple'>지금 내 기분이 그래<br>포스터가 없넹..?</p>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title esup">"{{ post.show_title }}"보러 가자미!</h5>
+                    <p class="card-text esup">{{post.post_author}}</p>
+                    <a href="{% url 'performance' index=post.pk %}"><img class='btn_confirm_main' src="{% static 'images/balloon_confirm.png' alt='btn upload fail' %}"></a>
+                </div>
+            </div>
+            {% endif %}
+    {% endif %}
+    {% endfor %}
+    
+
+
+    
+{% endblock %}

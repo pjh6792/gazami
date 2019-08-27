@@ -32,11 +32,11 @@
                 {% endif %}
             </div>
 
-            <form id='navbar-form' class="form-inline" method="POST">
-                {% csrf_token %}
+            <form id='navbar-form' class="form-inline" method = "GET" action="{% url 'search' %}">
+                <!-- {% csrf_token %} -->
                 <img id='asking-gazami' src="{% static 'images/purple_gazami2.png'%}" width="150" height="110" alt="">
-                <form method="POST">
-                    <input class="form-control mr-sm-2" id='search-text' type="search" placeholder="공연명 또는 공연자명을 검색하세요." aria-label="Search">
+                <form method="GET" action="{% url 'search' %}">
+                    <input class="form-control mr-sm-2" name="q" value="{{request.GET.q}}" id='search-text' type="search" placeholder="공연명 또는 공연자명을 검색하세요." aria-label="Search">
                     <button class="btn btn-outline-success my-2 my-sm-0" id='search-button' type="submit">
                         <img id="search-button-img" src="{% static 'images/balloon_confirm.png'%}" width="130" height="60" alt="">
                     </button>
